@@ -1,0 +1,10 @@
+asset_id,asset_type,name,location,capacity_gpm,capacity_gallons,connected_to,smart_enabled,device_id,device_platform,notes
+WS001,source,Main Water Line,house,10.0,,,,,,Municipal water connection
+T001,tank,Rain Barrel,backyard,,55,WS001,false,,,Collects roof runoff
+V001,valve,Garden Valve,main-garden-bed,5.0,,WS001,true,tuya_valve_001,tuya,SmartLife controlled
+V002,valve,Orchard Valve,fruit-trees,3.0,,WS001,true,tuya_valve_002,tuya,SmartLife controlled
+M001,manifold,Zone 1 Manifold,main-garden-bed,5.0,,V001,false,,,4-way splitter
+D001,drip_line,Garden Drip,main-garden-bed,2.0,,M001,false,,,1/4 inch drip line
+S001,sensor,Soil Sensor 1,main-garden-bed,,,M001,true,tuya_sensor_001,tuya,Moisture + Temp + EC
+S002,sensor,Soil Sensor 2,fruit-trees,,,V002,true,tuya_sensor_002,tuya,Moisture + Temp
+

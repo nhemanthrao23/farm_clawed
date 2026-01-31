@@ -1,0 +1,66 @@
+# Season Calendar Template
+# Defines seasonal patterns, planting windows, and frost dates.
+
+hemisphere: "northern"
+climate_type: "mediterranean"
+
+seasons:
+  spring:
+    start: "03-01"
+    end: "05-31"
+    activities:
+      - "Start seeds indoors (March)"
+      - "Transplant after last frost"
+      - "Direct sow cool-season crops"
+      - "Apply compost to beds"
+  
+  summer:
+    start: "06-01"
+    end: "08-31"
+    activities:
+      - "Maintain consistent watering"
+      - "Harvest summer crops"
+      - "Succession plant for fall"
+      - "Monitor for pests"
+  
+  fall:
+    start: "09-01"
+    end: "11-30"
+    activities:
+      - "Plant garlic and cover crops"
+      - "Harvest remaining crops"
+      - "Prepare beds for winter"
+      - "Clean and store tools"
+  
+  winter:
+    start: "12-01"
+    end: "02-28"
+    activities:
+      - "Plan next year's garden"
+      - "Order seeds"
+      - "Prune dormant trees"
+      - "Maintain tools"
+
+frost_dates:
+  average_last: "03-15"
+  average_first: "11-15"
+  record_last: "04-15"
+  record_first: "10-15"
+
+crop_calendars:
+  - crop: "Tomatoes"
+    sow_indoors: "02-15 to 03-15"
+    transplant: "04-15 to 05-15"
+    harvest: "07-01 to 10-15"
+    notes: "Needs warm soil, stake or cage"
+
+  - crop: "Lettuce"
+    direct_sow: "03-01 to 04-15"
+    harvest: "05-01 to 06-15"
+    notes: "Succession plant every 2 weeks"
+
+  - crop: "Garlic"
+    direct_sow: "10-01 to 11-15"
+    harvest: "06-01 to 07-15"
+    notes: "Plant cloves 2 inches deep"
+

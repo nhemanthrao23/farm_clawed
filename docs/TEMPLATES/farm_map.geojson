@@ -1,0 +1,67 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "main-garden-bed",
+        "name": "Main Garden Bed",
+        "area_type": "bed",
+        "area_sqft": 100,
+        "crops": ["Tomatoes", "Peppers", "Basil"],
+        "planted_date": "2025-04-15",
+        "irrigation_zone": "zone-1",
+        "notes": "Raised bed with drip irrigation"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-122.4195, 37.7750],
+          [-122.4193, 37.7750],
+          [-122.4193, 37.7748],
+          [-122.4195, 37.7748],
+          [-122.4195, 37.7750]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "herb-spiral",
+        "name": "Herb Spiral",
+        "area_type": "bed",
+        "area_sqft": 25,
+        "crops": ["Rosemary", "Thyme", "Oregano", "Sage"],
+        "irrigation_zone": "zone-1",
+        "permaculture_zone": 1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.4194, 37.7749]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "fruit-trees",
+        "name": "Fruit Tree Area",
+        "area_type": "orchard",
+        "area_sqft": 400,
+        "crops": ["Apple", "Pear", "Plum"],
+        "irrigation_zone": "zone-2",
+        "permaculture_zone": 2
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-122.4200, 37.7752],
+          [-122.4196, 37.7752],
+          [-122.4196, 37.7750],
+          [-122.4200, 37.7750],
+          [-122.4200, 37.7752]
+        ]]
+      }
+    }
+  ]
+}
+

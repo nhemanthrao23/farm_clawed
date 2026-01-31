@@ -528,6 +528,139 @@ export const OpenClawSchema = z
       })
       .strict()
       .optional(),
+    // farm_clawed: Farm automation configuration
+    farm: z
+      .object({
+        // Permaculture depth dial (0-3)
+        // 0: Standard farm ops (no permaculture constructs)
+        // 1: Regen-friendly (soil health + water conservation + IPM)
+        // 2: Permaculture-lite (zones/sectors optional, guild guidance)
+        // 3: Full permaculture (zones/sectors, guilds, stacking, succession)
+        permacultureDepth: z.number().int().min(0).max(3).default(1).optional(),
+        // Automation level dial (0-4)
+        // 0: Observe only (dashboards, logs)
+        // 1: Assist (recommendations + checklists)
+        // 2: Propose + Approvals (human-in-loop; default for actuation)
+        // 3: Auto within guardrails (requires explicit enable + safety checklist)
+        // 4: Full Ops (edge box + sensors + actuators + strict Jidoka)
+        automationLevel: z.number().int().min(0).max(4).default(1).optional(),
+        // Farm profile configuration
+        profile: z
+          .object({
+            name: z.string().optional(),
+            location: z
+              .object({
+                latitude: z.number().optional(),
+                longitude: z.number().optional(),
+                elevation_m: z.number().optional(),
+                timezone: z.string().optional(),
+              })
+              .strict()
+              .optional(),
+            climate: z
+              .object({
+                zone: z.string().optional(),
+                avgRainfallMm: z.number().optional(),
+                frostFreeDays: z.number().optional(),
+              })
+              .strict()
+              .optional(),
+            scale: z
+              .object({
+                type: z
+                  .union([
+                    z.literal("container"),
+                    z.literal("garden"),
+                    z.literal("small_farm"),
+                    z.literal("orchard"),
+                    z.literal("ranch"),
+                    z.literal("commercial"),
+                  ])
+                  .optional(),
+                areaSqft: z.number().optional(),
+                plantCount: z.number().optional(),
+              })
+              .strict()
+              .optional(),
+          })
+          .strict()
+          .optional(),
+        // Safety/Jidoka configuration
+        safety: z
+          .object({
+            // Enable actuator control (disabled by default)
+            actuatorsEnabled: z.boolean().default(false).optional(),
+            // Stop-the-line triggers
+            stopTriggers: z
+              .object({
+                leakDetection: z.boolean().default(true).optional(),
+                overwaterThresholdPercent: z.number().default(80).optional(),
+                overwaterDurationMinutes: z.number().default(60).optional(),
+                ecSpikeThreshold: z.number().default(2.0).optional(),
+                frostRiskTempF: z.number().default(35).optional(),
+              })
+              .strict()
+              .optional(),
+            // Require acknowledgment for safety items
+            requireSafetyAcknowledgment: z.boolean().default(true).optional(),
+          })
+          .strict()
+          .optional(),
+        // AI provider for farm analysis
+        ai: z
+          .object({
+            provider: z
+              .union([
+                z.literal("none"),
+                z.literal("openai"),
+                z.literal("anthropic"),
+                z.literal("local"),
+              ])
+              .default("none")
+              .optional(),
+            baseUrl: z.string().optional(),
+            model: z.string().optional(),
+            apiKeyEnvVar: z.string().optional(),
+          })
+          .strict()
+          .optional(),
+        // ROI tracking configuration
+        roi: z
+          .object({
+            enabled: z.boolean().default(true).optional(),
+            trackingPeriod: z
+              .union([z.literal("daily"), z.literal("weekly"), z.literal("monthly")])
+              .default("monthly")
+              .optional(),
+            waterCostPerGallon: z.number().optional(),
+            hourlyLaborValue: z.number().optional(),
+          })
+          .strict()
+          .optional(),
+        // IFTTT/SmartLife integration
+        ifttt: z
+          .object({
+            enabled: z.boolean().default(false).optional(),
+            webhookKeyEnvVar: z.string().default("IFTTT_WEBHOOK_KEY").optional(),
+            scenePrefix: z.string().default("FARM_").optional(),
+          })
+          .strict()
+          .optional(),
+        // Experiment tracking
+        experiments: z
+          .array(
+            z
+              .object({
+                id: z.string(),
+                name: z.string(),
+                enabled: z.boolean().default(true).optional(),
+              })
+              .strict(),
+          )
+          .optional(),
+      })
+      .strict()
+      .optional(),
   })
   .strict()
   .superRefine((cfg, ctx) => {

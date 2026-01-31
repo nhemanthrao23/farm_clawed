@@ -143,6 +143,8 @@ export type AppViewState = {
   logsLevelFilters: Record<LogLevel, boolean>;
   logsAutoFollow: boolean;
   logsTruncated: boolean;
+  // Farm chat bubble state
+  farmBubbleMessages: Array<{ id: string; role: string; content: string; timestamp: string }>;
   client: GatewayBrowserClient | null;
   connect: () => void;
   setTab: (tab: Tab) => void;

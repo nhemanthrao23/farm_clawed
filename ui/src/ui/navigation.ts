@@ -1,7 +1,7 @@
 import type { IconName } from "./icons.js";
 
 export const TAB_GROUPS = [
-  { label: "Chat", tabs: ["chat"] },
+  { label: "Farm", tabs: ["farm-dashboard", "farm-map", "farm-equipment", "farm-automations"] },
   {
     label: "Control",
     tabs: ["overview", "channels", "instances", "sessions", "cron"],
@@ -11,6 +11,10 @@ export const TAB_GROUPS = [
 ] as const;
 
 export type Tab =
+  | "farm-dashboard"
+  | "farm-map"
+  | "farm-equipment"
+  | "farm-automations"
   | "overview"
   | "channels"
   | "instances"
@@ -18,12 +22,15 @@ export type Tab =
   | "cron"
   | "skills"
   | "nodes"
-  | "chat"
   | "config"
   | "debug"
   | "logs";
 
 const TAB_PATHS: Record<Tab, string> = {
+  "farm-dashboard": "/farm",
+  "farm-map": "/farm/map",
+  "farm-equipment": "/farm/equipment",
+  "farm-automations": "/farm/automations",
   overview: "/overview",
   channels: "/channels",
   instances: "/instances",
@@ -31,7 +38,6 @@ const TAB_PATHS: Record<Tab, string> = {
   cron: "/cron",
   skills: "/skills",
   nodes: "/nodes",
-  chat: "/chat",
   config: "/config",
   debug: "/debug",
   logs: "/logs",
@@ -76,7 +82,7 @@ export function tabFromPath(pathname: string, basePath = ""): Tab | null {
   }
   let normalized = normalizePath(path).toLowerCase();
   if (normalized.endsWith("/index.html")) normalized = "/";
-  if (normalized === "/") return "chat";
+  if (normalized === "/") return "farm-dashboard";
   return PATH_TO_TAB.get(normalized) ?? null;
 }
 
@@ -100,8 +106,14 @@ export function inferBasePathFromPathname(pathname: string): string {
 
 export function iconForTab(tab: Tab): IconName {
   switch (tab) {
-    case "chat":
-      return "messageSquare";
+    case "farm-dashboard":
+      return "home";
+    case "farm-map":
+      return "mapPin";
+    case "farm-equipment":
+      return "settings";
+    case "farm-automations":
+      return "zap";
     case "overview":
       return "barChart";
     case "channels":
@@ -129,6 +141,14 @@ export function iconForTab(tab: Tab): IconName {
 
 export function titleForTab(tab: Tab) {
   switch (tab) {
+    case "farm-dashboard":
+      return "farm_clawed";
+    case "farm-map":
+      return "Farm";
+    case "farm-equipment":
+      return "Equipment";
+    case "farm-automations":
+      return "Automations";
     case "overview":
       return "Overview";
     case "channels":
@@ -143,8 +163,6 @@ export function titleForTab(tab: Tab) {
       return "Skills";
     case "nodes":
       return "Nodes";
-    case "chat":
-      return "Chat";
     case "config":
       return "Config";
     case "debug":
@@ -158,6 +176,14 @@ export function titleForTab(tab: Tab) {
 
 export function subtitleForTab(tab: Tab) {
   switch (tab) {
+    case "farm-dashboard":
+      return "The ChatGPT of autonomous farming";
+    case "farm-map":
+      return "Map view with AI insights and automations";
+    case "farm-equipment":
+      return "Equipment status, maintenance, and adoption guidance.";
+    case "farm-automations":
+      return "Review automation history and pending actions.";
     case "overview":
       return "Gateway status, entry points, and a fast health read.";
     case "channels":
@@ -172,8 +198,6 @@ export function subtitleForTab(tab: Tab) {
       return "Manage skill availability and API key injection.";
     case "nodes":
       return "Paired devices, capabilities, and command exposure.";
-    case "chat":
-      return "Direct gateway chat session for quick interventions.";
     case "config":
       return "Edit ~/.openclaw/openclaw.json safely.";
     case "debug":

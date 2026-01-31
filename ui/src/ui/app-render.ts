@@ -43,6 +43,14 @@ import { renderOverview } from "./views/overview";
 import { renderSessions } from "./views/sessions";
 import { renderExecApprovalPrompt } from "./views/exec-approval";
 import { renderGatewayUrlConfirmation } from "./views/gateway-url-confirmation";
+// Farm views
+import "./views/farm-dashboard";
+import "./views/farm-map";
+import "./views/farm-map-dashboard";
+import "./views/farm-equipment";
+import "./views/farm-automations";
+// Floating chat bubble
+import "./components/chat-bubble";
 import {
   approveDevicePairing,
   loadDevices,
@@ -133,11 +141,11 @@ export function renderApp(state: AppViewState) {
           </button>
           <div class="brand">
             <div class="brand-logo">
-              <img src="https://mintcdn.com/clawhub/4rYvG-uuZrMK_URE/assets/pixel-lobster.svg?fit=max&auto=format&n=4rYvG-uuZrMK_URE&q=85&s=da2032e9eac3b5d9bfe7eb96ca6a8a26" alt="OpenClaw" />
+              <img src="./assets/farm-clawed-logo.svg" alt="farm_clawed" />
             </div>
             <div class="brand-text">
-              <div class="brand-title">OPENCLAW</div>
-              <div class="brand-sub">Gateway Dashboard</div>
+              <div class="brand-title">farm_clawed</div>
+              <div class="brand-sub">Autonomous Farm Assistant</div>
             </div>
           </div>
         </div>
@@ -206,6 +214,51 @@ export function renderApp(state: AppViewState) {
             ${isChat ? renderChatControls(state) : nothing}
           </div>
         </section>
+
+        ${
+          state.tab === "farm-dashboard"
+            ? html`<farm-dashboard-view
+                @refresh=${() => state.loadOverview()}
+                @settings=${() => state.setTab("config")}
+                @approve-automation=${(e: CustomEvent) => console.log("Approve:", e.detail)}
+                @reject-automation=${(e: CustomEvent) => console.log("Reject:", e.detail)}
+                @view-equipment=${() => state.setTab("farm-equipment")}
+                @chat-message=${(e: CustomEvent) => console.log("Chat:", e.detail)}
+              ></farm-dashboard-view>`
+            : nothing
+        }
+
+        ${
+          state.tab === "farm-equipment"
+            ? html`<farm-equipment-view
+                @equipment-question=${(e: CustomEvent) => console.log("Equipment Q:", e.detail)}
+                @equipment-qa=${(e: CustomEvent) => console.log("Equipment QA:", e.detail)}
+                @equipment-maintenance=${(e: CustomEvent) => console.log("Maintenance:", e.detail)}
+                @equipment-settings=${(e: CustomEvent) => console.log("Settings:", e.detail)}
+                @equipment-troubleshoot=${(e: CustomEvent) => console.log("Troubleshoot:", e.detail)}
+                @add-equipment=${() => console.log("Add equipment")}
+              ></farm-equipment-view>`
+            : nothing
+        }
+
+        ${
+          state.tab === "farm-map"
+            ? html`<farm-map-dashboard
+                @approve-automation=${(e: CustomEvent) => console.log("Approve:", e.detail)}
+                @reject-automation=${(e: CustomEvent) => console.log("Reject:", e.detail)}
+              ></farm-map-dashboard>`
+            : nothing
+        }
+
+        ${
+          state.tab === "farm-automations"
+            ? html`<farm-automations-view
+                @approve-automation=${(e: CustomEvent) => console.log("Approve:", e.detail)}
+                @reject-automation=${(e: CustomEvent) => console.log("Reject:", e.detail)}
+                @modify-automation=${(e: CustomEvent) => console.log("Modify:", e.detail)}
+              ></farm-automations-view>`
+            : nothing
+        }
 
         ${
           state.tab === "overview"
@@ -602,6 +655,21 @@ export function renderApp(state: AppViewState) {
       </main>
       ${renderExecApprovalPrompt(state)}
       ${renderGatewayUrlConfirmation(state)}
+      
+      <!-- Floating Chat Bubble -->
+      <farm-chat-bubble
+        .currentTab=${state.tab}
+        .pendingAutomations=${1}
+        .ollamaStatus=${"online"}
+        .externalMessages=${state.farmBubbleMessages || []}
+        @navigate-tab=${(e: CustomEvent) => state.setTab(e.detail.tab)}
+        @chat-message=${(e: CustomEvent) => {
+          state.farmBubbleMessages = e.detail.messages;
+        }}
+        @messages-updated=${(e: CustomEvent) => {
+          state.farmBubbleMessages = e.detail.messages;
+        }}
+      ></farm-chat-bubble>
     </div>
   `;
 }

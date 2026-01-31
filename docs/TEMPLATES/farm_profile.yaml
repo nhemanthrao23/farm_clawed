@@ -1,0 +1,38 @@
+# Farm Profile Template
+# This file describes your farm's basic information, location, and constraints.
+
+name: "My Farm"
+
+location:
+  latitude: 37.7749        # Your latitude (decimal degrees)
+  longitude: -122.4194     # Your longitude (decimal degrees)
+  elevation_m: 16          # Elevation in meters (optional)
+  timezone: "America/Los_Angeles"
+
+climate:
+  zone: "10a"              # USDA hardiness zone
+  avg_rainfall_mm: 500     # Average annual rainfall
+  frost_free_days: 300     # Days without frost
+  last_frost: "02-15"      # Average last frost (MM-DD)
+  first_frost: "12-01"     # Average first frost (MM-DD)
+
+constraints:
+  water_source: "municipal"  # municipal | well | rainwater | pond | stream | other
+  water_cost_per_gallon: 0.008
+  max_daily_gallons: 500
+  power_available: true
+  internet_available: true
+
+scale:
+  type: "garden"           # container | garden | small_farm | orchard | ranch | commercial
+  area_sqft: 1000
+  plant_count: 50
+
+owner:
+  name: "Gardener"
+  experience_years: 2
+  goals:
+    - "Grow organic vegetables"
+    - "Reduce water usage"
+    - "Learn permaculture principles"
+

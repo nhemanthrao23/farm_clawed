@@ -1,0 +1,44 @@
+# ROI Inputs Template
+# Cost tracking and value estimation for your farm.
+
+tracking_period: "monthly"
+
+costs:
+  water:
+    rate_per_gallon: 0.008
+    baseline_monthly_gallons: 500
+    rate_structure: "tiered"  # flat | tiered | seasonal
+
+  inputs:
+    fertilizer_monthly: 15.00
+    pest_control_monthly: 5.00
+    amendments_monthly: 10.00
+    seeds_annual: 100.00
+    tools_annual: 50.00
+
+  time:
+    hourly_value: 25.00
+    baseline_hours_per_week: 5.0
+
+  equipment:
+    sensor_cost: 35.00
+    valve_cost: 45.00
+    hub_cost: 25.00
+    subscription_monthly: 0.00  # farm_clawed is free!
+
+values:
+  harvest:
+    expected_units_per_year: 200
+    value_per_unit: 2.00
+    unit_name: "pounds of produce"
+
+  avoided_loss:
+    plant_replacement_cost: 150.00
+    probability_without_monitoring: 0.20
+    probability_with_monitoring: 0.05
+
+goals:
+  target_water_savings_percent: 25
+  target_time_savings_percent: 40
+  payback_target_months: 6
+

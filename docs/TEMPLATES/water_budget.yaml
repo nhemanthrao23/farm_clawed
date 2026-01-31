@@ -1,0 +1,89 @@
+# Water Budget Template
+# Water allocation, drought stages, and conservation priorities.
+
+annual_budget_gallons: 18250  # ~50 gallons/day average
+daily_budget_gallons: 50
+
+priorities:
+  - rank: 1
+    category: "established_perennials"
+    items:
+      - "Fruit trees"
+      - "Berry bushes"
+      - "Perennial herbs"
+    min_percent: 40
+    notes: "Prioritize during drought - these represent years of growth"
+
+  - rank: 2
+    category: "food_production"
+    items:
+      - "Vegetable beds"
+      - "Annual crops"
+    min_percent: 35
+    notes: "Main food production"
+
+  - rank: 3
+    category: "establishment"
+    items:
+      - "New plantings"
+      - "Seedlings"
+    min_percent: 15
+    notes: "Critical for new plants, reduce if drought"
+
+  - rank: 4
+    category: "ornamental"
+    items:
+      - "Flowers"
+      - "Lawn (if any)"
+    min_percent: 10
+    notes: "First to reduce during water restrictions"
+
+drought_stages:
+  - stage: 0
+    name: "Normal"
+    trigger: "No restrictions in effect"
+    allocation_percent: 100
+    actions: []
+
+  - stage: 1
+    name: "Watch"
+    trigger: "Voluntary conservation requested"
+    allocation_percent: 85
+    actions:
+      - "Water only in early morning"
+      - "Check all systems for leaks"
+      - "Increase mulch depth"
+      - "Suspend ornamental watering"
+
+  - stage: 2
+    name: "Warning"
+    trigger: "Mandatory restrictions level 1"
+    allocation_percent: 70
+    actions:
+      - "No new plantings except food crops"
+      - "Deep water less frequently"
+      - "Add shade cloth to sensitive crops"
+      - "Collect kitchen graywater for trees"
+
+  - stage: 3
+    name: "Emergency"
+    trigger: "Severe restrictions / Stage 2+"
+    allocation_percent: 50
+    actions:
+      - "Priority 1 plants only receive water"
+      - "Hand water at root zone only"
+      - "Consider sacrificing annuals"
+      - "Emergency shade for all crops"
+      - "Request variance for food production"
+
+monitoring:
+  check_frequency: "weekly"
+  sources:
+    - "Local water district website"
+    - "NOAA drought monitor"
+    - "Soil moisture sensors"
+  alert_thresholds:
+    low_moisture_percent: 25
+    high_moisture_percent: 85
+    daily_usage_gallons: 75
+

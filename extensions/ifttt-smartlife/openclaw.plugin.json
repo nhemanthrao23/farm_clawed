@@ -1,0 +1,20 @@
+{
+  "id": "ifttt-smartlife",
+  "channels": [],
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "webhookKey": {
+        "type": "string",
+        "description": "IFTTT Webhook key for triggering applets"
+      },
+      "enabled": {
+        "type": "boolean",
+        "description": "Enable IFTTT/SmartLife integration",
+        "default": false
+      }
+    }
+  }
+}
+

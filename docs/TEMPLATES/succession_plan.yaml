@@ -1,0 +1,103 @@
+# Succession Plan Template
+# Multi-year development plan for your permaculture system.
+
+start_year: 2025
+planning_horizon_years: 5
+description: "Transform suburban yard into productive food forest"
+
+goals:
+  - "Produce 50% of household vegetables by year 3"
+  - "Establish fruit tree guilds by year 2"
+  - "Eliminate lawn by year 5"
+  - "Reduce water usage 40% by year 3"
+
+stages:
+  - year: 1
+    name: "Foundation"
+    focus: "Soil building and infrastructure"
+    actions:
+      - action: "Sheet mulch future food forest area"
+        timing: "Fall"
+        priority: "high"
+      - action: "Install rain barrel system"
+        timing: "Spring"
+        priority: "medium"
+      - action: "Plant cover crop on unused areas"
+        timing: "Fall"
+      - "Build first raised beds"
+      - "Start compost system"
+    success_criteria:
+      - metric: "Soil covered"
+        target: "80%"
+      - "Compost producing material"
+      - "First vegetables harvested"
+
+  - year: 2
+    name: "Trees and Perennials"
+    focus: "Establish permanent plantings"
+    actions:
+      - action: "Plant fruit trees"
+        timing: "Late winter"
+        priority: "high"
+      - action: "Install drip irrigation"
+        timing: "Spring"
+      - "Plant berry bushes"
+      - "Begin guild underplantings"
+      - "Expand vegetable beds"
+    success_criteria:
+      - "All planned trees planted"
+      - "First berry harvest"
+      - "Irrigation automated"
+
+  - year: 3
+    name: "Integration"
+    focus: "Connect systems and increase production"
+    actions:
+      - "Complete guild plantings"
+      - "Add perennial vegetables"
+      - "Install sensor monitoring"
+      - "First fruit tree harvest expected"
+    success_criteria:
+      - metric: "Vegetable self-sufficiency"
+        target: "50%"
+      - "Water usage reduced 40%"
+
+  - year: 4
+    name: "Refinement"
+    focus: "Optimize and expand"
+    actions:
+      - "Evaluate and adjust guild compositions"
+      - "Add additional fruit varieties"
+      - "Consider small livestock (chickens)"
+      - "Begin teaching/sharing with neighbors"
+    success_criteria:
+      - "Significant fruit harvest"
+      - "Reduced maintenance time"
+
+  - year: 5
+    name: "Maturity"
+    focus: "Sustainable abundance"
+    actions:
+      - "Lawn fully converted"
+      - "Food forest self-maintaining"
+      - "Share surplus with community"
+      - "Document and share learnings"
+    success_criteria:
+      - metric: "Food production"
+        target: "75% of vegetables, 50% of fruit"
+      - "System requires minimal inputs"
+
+evaluation:
+  frequency: "quarterly"
+  metrics:
+    - "harvest_pounds"
+    - "water_usage_gallons"
+    - "time_spent_hours"
+    - "biodiversity_observations"
+    - "soil_health_indicators"
+  review_dates:
+    - "03-15"
+    - "06-15"
+    - "09-15"
+    - "12-15"
+

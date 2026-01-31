@@ -1,0 +1,73 @@
+# Guilds Template
+# Plant guild definitions for polyculture plantings.
+
+guilds:
+  - name: "Apple Guild"
+    anchor: "Semi-dwarf Apple"
+    description: "Classic temperate fruit tree guild"
+    
+    layers:
+      canopy: "Apple Tree"
+      understory: null
+      shrub: 
+        - "Gooseberry"
+        - "Currant"
+      herbaceous:
+        - "Comfrey"
+        - "Yarrow"
+        - "Bee Balm"
+      ground_cover:
+        - "White Clover"
+        - "Wild Strawberry"
+      vine: null
+      root:
+        - "Garlic"
+        - "Daffodil"
+    
+    functions:
+      nitrogen_fixers:
+        - "White Clover"
+      dynamic_accumulators:
+        - "Comfrey"
+        - "Yarrow"
+      pest_repellent:
+        - "Garlic"
+        - "Daffodil"
+      pollinator_attractors:
+        - "Bee Balm"
+        - "Yarrow"
+      mulch_producers:
+        - "Comfrey"
+    
+    spacing:
+      comfrey_from_trunk_ft: 3
+      clover_coverage_percent: 60
+    
+    notes: "Chop-and-drop comfrey 3x/year for mulch"
+
+  - name: "Three Sisters"
+    anchor: "Corn"
+    description: "Traditional Native American polyculture"
+    
+    layers:
+      canopy: null
+      understory: "Corn"
+      shrub: null
+      herbaceous: "Beans (pole)"
+      ground_cover: "Winter Squash"
+      vine: null
+      root: null
+    
+    functions:
+      nitrogen_fixers:
+        - "Beans"
+      mulch_producers:
+        - "Squash leaves"
+    
+    spacing:
+      corn_hill_spacing_ft: 4
+      beans_per_corn: 3
+      squash_per_hill: 1
+    
+    notes: "Plant corn first, beans 2 weeks later, squash 1 week after beans"
+

@@ -1,0 +1,15 @@
+timestamp,sensor_id,reading_type,value,unit,battery_pct,quality,notes
+2025-01-31T08:00:00Z,S001,moisture,45,percent,85,good,
+2025-01-31T08:00:00Z,S001,temperature,58.2,fahrenheit,85,good,
+2025-01-31T08:00:00Z,S001,ec,0.8,mS/cm,85,good,
+2025-01-31T12:00:00Z,S001,moisture,42,percent,84,good,
+2025-01-31T12:00:00Z,S001,temperature,72.5,fahrenheit,84,good,
+2025-01-31T12:00:00Z,S001,ec,0.9,mS/cm,84,good,
+2025-01-31T16:00:00Z,S001,moisture,38,percent,83,good,
+2025-01-31T16:00:00Z,S001,temperature,68.1,fahrenheit,83,good,
+2025-01-31T16:00:00Z,S001,ec,1.0,mS/cm,83,good,
+2025-01-31T08:00:00Z,S002,moisture,52,percent,90,good,
+2025-01-31T08:00:00Z,S002,temperature,55.0,fahrenheit,90,good,
+2025-01-31T12:00:00Z,S002,moisture,48,percent,89,good,
+2025-01-31T12:00:00Z,S002,temperature,65.3,fahrenheit,89,good,
+

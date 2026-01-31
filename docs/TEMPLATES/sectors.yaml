@@ -1,0 +1,50 @@
+# Sectors Template
+# Analyzes energy flows through your site: sun, wind, water, fire.
+
+sun:
+  summer_sunrise_azimuth: 60      # Degrees from north
+  summer_sunset_azimuth: 300
+  winter_sunrise_azimuth: 120
+  winter_sunset_azimuth: 240
+  shade_sources:
+    - name: "Neighbor's oak tree"
+      azimuth: 180
+      shade_hours_summer: 2
+      shade_hours_winter: 4
+    - name: "House shadow"
+      azimuth: 0
+      shade_hours_summer: 1
+      shade_hours_winter: 3
+
+wind:
+  prevailing_direction: 270       # West winds most common
+  storm_direction: 225            # SW storms
+  wind_breaks:
+    - name: "Fence and hedge"
+      azimuth_range: [225, 315]
+      effectiveness: 0.7
+    - name: "House"
+      azimuth_range: [315, 45]
+      effectiveness: 0.9
+
+water:
+  slope_direction: 180            # Land slopes south
+  slope_percent: 3
+  drainage_issues:
+    - "Pooling in NE corner during heavy rain"
+    - "Dry spot on south slope"
+  water_sources_direction: 0      # Municipal from north
+
+fire:
+  risk_direction: 45              # Hills to NE
+  risk_level: "moderate"
+  defensible_space_ft: 30
+
+custom:
+  - name: "Noise from road"
+    direction: 90
+    description: "Morning traffic noise from east"
+  - name: "Nice view"
+    direction: 225
+    description: "View of hills to SW, don't block"
+

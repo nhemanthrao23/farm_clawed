@@ -1,0 +1,29 @@
+{
+  "name": "@farm_clawed/ifttt-smartlife",
+  "version": "1.0.0",
+  "description": "IFTTT and SmartLife integration for farm_clawed actuator control",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "farm_clawed",
+    "ifttt",
+    "smartlife",
+    "tuya",
+    "automation"
+  ],
+  "peerDependencies": {
+    "openclaw": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist"
+  ]
+}
+

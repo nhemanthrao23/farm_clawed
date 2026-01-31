@@ -238,6 +238,8 @@ export class OpenClawApp extends LitElement {
   };
   @state() logsAutoFollow = true;
   @state() logsTruncated = false;
+  // Farm chat bubble state
+  @state() farmBubbleMessages: Array<{ id: string; role: string; content: string; timestamp: string }> = [];
   @state() logsCursor: number | null = null;
   @state() logsLastFetchAt: number | null = null;
   @state() logsLimit = 500;

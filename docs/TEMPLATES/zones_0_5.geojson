@@ -1,0 +1,86 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "zone": 0,
+        "name": "House",
+        "description": "Living space, kitchen, indoor herb windowsill",
+        "visit_frequency": "multiple_daily",
+        "intensity": "intensive"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-122.4196, 37.7746],
+          [-122.4192, 37.7746],
+          [-122.4192, 37.7744],
+          [-122.4196, 37.7744],
+          [-122.4196, 37.7746]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone": 1,
+        "name": "Kitchen Garden",
+        "description": "Herbs, salad greens, frequently harvested crops",
+        "visit_frequency": "daily",
+        "intensity": "intensive"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-122.4196, 37.7750],
+          [-122.4192, 37.7750],
+          [-122.4192, 37.7746],
+          [-122.4196, 37.7746],
+          [-122.4196, 37.7750]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone": 2,
+        "name": "Main Food Production",
+        "description": "Vegetable beds, perennials, small orchard",
+        "visit_frequency": "few_times_week",
+        "intensity": "moderate"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-122.4200, 37.7754],
+          [-122.4192, 37.7754],
+          [-122.4192, 37.7750],
+          [-122.4200, 37.7750],
+          [-122.4200, 37.7754]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "zone": 3,
+        "name": "Orchard and Pasture",
+        "description": "Fruit trees, larger plantings, possible small livestock",
+        "visit_frequency": "weekly",
+        "intensity": "extensive"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-122.4204, 37.7758],
+          [-122.4192, 37.7758],
+          [-122.4192, 37.7754],
+          [-122.4204, 37.7754],
+          [-122.4204, 37.7758]
+        ]]
+      }
+    }
+  ]
+}
+
