@@ -44,11 +44,23 @@ import { renderSessions } from "./views/sessions";
 import { renderExecApprovalPrompt } from "./views/exec-approval";
 import { renderGatewayUrlConfirmation } from "./views/gateway-url-confirmation";
 // Farm views
-import "./views/farm-dashboard";
+import "./views/farm-command-center"; // NEW: Primary split-view command center
+import "./views/farm-ai-panel"; // NEW: AI assistant panel component
+import "./views/farm-onboarding"; // NEW: Multi-path onboarding (JD/FV/Manual)
+import "./views/farm-dashboard"; // Legacy: redirects to command center
 import "./views/farm-map";
 import "./views/farm-map-dashboard";
 import "./views/farm-equipment";
 import "./views/farm-automations";
+import "./views/farm-water";
+import "./views/farm-soil";
+import "./views/farm-microclimate";
+import "./views/farm-ipm";
+import "./views/farm-approvals";
+import "./views/farm-audit";
+import "./views/farm-roi";
+import "./views/farm-experiments";
+import "./views/farm-setup";
 // Floating chat bubble
 import "./components/chat-bubble";
 import {
@@ -216,6 +228,29 @@ export function renderApp(state: AppViewState) {
         </section>
 
         ${
+          state.tab === "farm-command-center"
+            ? html`<farm-command-center
+                @refresh=${() => state.loadOverview()}
+                @settings=${() => state.setTab("config")}
+                @field-select=${(e: CustomEvent) => console.log("Field selected:", e.detail)}
+                @org-change=${(e: CustomEvent) => console.log("Org changed:", e.detail)}
+                @command=${(e: CustomEvent) => console.log("Command:", e.detail)}
+              ></farm-command-center>`
+            : nothing
+        }
+
+        ${
+          state.tab === "farm-onboarding"
+            ? html`<farm-onboarding-view
+                @onboarding-complete=${(e: CustomEvent) => {
+                  console.log("Onboarding complete:", e.detail);
+                  state.setTab("farm-command-center");
+                }}
+              ></farm-onboarding-view>`
+            : nothing
+        }
+
+        ${
           state.tab === "farm-dashboard"
             ? html`<farm-dashboard-view
                 @refresh=${() => state.loadOverview()}
@@ -257,6 +292,38 @@ export function renderApp(state: AppViewState) {
                 @reject-automation=${(e: CustomEvent) => console.log("Reject:", e.detail)}
                 @modify-automation=${(e: CustomEvent) => console.log("Modify:", e.detail)}
               ></farm-automations-view>`
+            : nothing
+        }
+
+        ${state.tab === "farm-water" ? html`<farm-water-view></farm-water-view>` : nothing}
+
+        ${state.tab === "farm-soil" ? html`<farm-soil-view></farm-soil-view>` : nothing}
+
+        ${state.tab === "farm-microclimate" ? html`<farm-microclimate-view></farm-microclimate-view>` : nothing}
+
+        ${state.tab === "farm-ipm" ? html`<farm-ipm-view></farm-ipm-view>` : nothing}
+
+        ${
+          state.tab === "farm-approvals"
+            ? html`<farm-approvals-view
+                @approve=${(e: CustomEvent) => console.log("Approve:", e.detail)}
+                @reject=${(e: CustomEvent) => console.log("Reject:", e.detail)}
+                @modify=${(e: CustomEvent) => console.log("Modify:", e.detail)}
+              ></farm-approvals-view>`
+            : nothing
+        }
+
+        ${state.tab === "farm-audit" ? html`<farm-audit-view></farm-audit-view>` : nothing}
+
+        ${state.tab === "farm-roi" ? html`<farm-roi-view></farm-roi-view>` : nothing}
+
+        ${state.tab === "farm-experiments" ? html`<farm-experiments-view></farm-experiments-view>` : nothing}
+
+        ${state.tab === "farm-setup" ? html`<farm-setup-view></farm-setup-view>` : nothing}
+
+        ${
+          state.tab === "farm-devices"
+            ? html`<farm-equipment-view></farm-equipment-view>`
             : nothing
         }
 
@@ -660,7 +727,10 @@ export function renderApp(state: AppViewState) {
       <farm-chat-bubble
         .currentTab=${state.tab}
         .pendingAutomations=${1}
-        .ollamaStatus=${"online"}
+        .ollamaStatus=${state.ollamaStatus}
+        .openaiStatus=${state.openaiStatus}
+        .openaiApiKey=${state.openaiApiKey}
+        .aiProvider=${state.aiProvider}
         .externalMessages=${state.farmBubbleMessages || []}
         @navigate-tab=${(e: CustomEvent) => state.setTab(e.detail.tab)}
         @chat-message=${(e: CustomEvent) => {

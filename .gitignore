@@ -71,3 +71,50 @@ USER.md
 
 # local tooling
 .serena/
+
+# =============================================================================
+# SECRETS AND SENSITIVE DATA (farm_clawed No Secrets Policy)
+# =============================================================================
+
+# Environment files with secrets
+.env
+.env.*
+!.env.example
+
+# Private keys and certificates
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*.cer
+
+# Secrets directories
+secrets/
+.secrets/
+credentials/
+
+# OAuth tokens and session data
+**/oauth_tokens.json
+**/tokens.json
+**/session_tokens.json
+
+# Database snapshots that may contain sensitive data
+snapshot.json
+**/snapshot.json
+
+# Device dumps and sensor data exports
+device_dump*.json
+sensor_export*.csv
+
+# FMIS connector cached tokens
+**/fmis_cache/
+**/deere_tokens.json
+**/fieldview_tokens.json
+
+# Home Assistant tokens
+ha_token.txt
+
+# IFTTT webhook key files
+ifttt_key.txt
+webhook_key.txt

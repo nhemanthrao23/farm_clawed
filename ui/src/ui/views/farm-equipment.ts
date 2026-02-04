@@ -38,20 +38,20 @@ export class FarmEquipmentView extends LitElement {
       overflow-y: auto;
       background: var(--bg, #12141a);
     }
-
+    
     .equipment-container {
       padding: 1.5rem;
       max-width: 900px;
       margin: 0 auto;
     }
-
+    
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.5rem;
     }
-
+    
     h1 {
       margin: 0;
       font-size: 1.25rem;
@@ -61,7 +61,7 @@ export class FarmEquipmentView extends LitElement {
       align-items: center;
       gap: 0.5rem;
     }
-
+    
     .filter-tabs {
       display: flex;
       gap: 0.25rem;
@@ -69,7 +69,7 @@ export class FarmEquipmentView extends LitElement {
       padding: 0.25rem;
       border-radius: var(--radius-md, 8px);
     }
-
+    
     .filter-tab {
       padding: 0.5rem 0.875rem;
       border: none;
@@ -80,22 +80,22 @@ export class FarmEquipmentView extends LitElement {
       cursor: pointer;
       transition: all 0.15s ease;
     }
-
+    
     .filter-tab:hover {
       color: var(--text, #e4e4e7);
     }
-
+    
     .filter-tab.active {
       background: var(--card, #181b22);
       color: var(--text-strong, #fafafa);
     }
-
+    
     .equipment-list {
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
-
+    
     .equipment-card {
       background: var(--card, #181b22);
       border: 1px solid var(--border, #27272a);
@@ -103,24 +103,24 @@ export class FarmEquipmentView extends LitElement {
       padding: 1.25rem;
       transition: all 0.15s ease;
     }
-
+    
     .equipment-card:hover {
       border-color: var(--border-hover, #52525b);
     }
-
+    
     .equipment-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       margin-bottom: 0.75rem;
     }
-
+    
     .equipment-info {
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
-
+    
     .equipment-icon {
       width: 44px;
       height: 44px;
@@ -131,18 +131,18 @@ export class FarmEquipmentView extends LitElement {
       justify-content: center;
       font-size: 1.25rem;
     }
-
+    
     .equipment-name {
       font-weight: 600;
       color: var(--text-strong, #fafafa);
     }
-
+    
     .equipment-type {
       font-size: 0.75rem;
       color: var(--muted, #71717a);
       text-transform: capitalize;
     }
-
+    
     .status-indicator {
       display: flex;
       align-items: center;
@@ -151,26 +151,26 @@ export class FarmEquipmentView extends LitElement {
       font-weight: 500;
       color: var(--text, #e4e4e7);
     }
-
+    
     .status-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
     }
-
+    
     .status-dot.online {
       background: var(--ok, #22c55e);
       box-shadow: 0 0 8px var(--ok, #22c55e);
     }
-
+    
     .status-dot.offline {
       background: var(--danger, #ef4444);
     }
-
+    
     .status-dot.maintenance {
       background: var(--warn, #f59e0b);
     }
-
+    
     .equipment-stats {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -180,32 +180,32 @@ export class FarmEquipmentView extends LitElement {
       background: var(--bg-elevated, #1a1d25);
       border-radius: var(--radius-md, 8px);
     }
-
+    
     .stat {
       text-align: center;
     }
-
+    
     .stat-value {
       font-size: 1rem;
       font-weight: 600;
       color: var(--text-strong, #fafafa);
     }
-
+    
     .stat-value.warning {
       color: var(--warn, #f59e0b);
     }
-
+    
     .stat-value.good {
       color: var(--ok, #22c55e);
     }
-
+    
     .stat-label {
       font-size: 0.65rem;
       color: var(--muted, #71717a);
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
-
+    
     .equipment-meta {
       display: flex;
       gap: 1rem;
@@ -213,13 +213,13 @@ export class FarmEquipmentView extends LitElement {
       font-size: 0.75rem;
       color: var(--muted, #71717a);
     }
-
+    
     .meta-item {
       display: flex;
       align-items: center;
       gap: 0.25rem;
     }
-
+    
     .recommendations {
       background: var(--warn-subtle, rgba(245, 158, 11, 0.12));
       border-left: 3px solid var(--warn, #f59e0b);
@@ -227,7 +227,7 @@ export class FarmEquipmentView extends LitElement {
       margin-bottom: 0.75rem;
       border-radius: 0 var(--radius-md, 8px) var(--radius-md, 8px) 0;
     }
-
+    
     .recommendations-title {
       font-weight: 500;
       font-size: 0.8rem;
@@ -237,24 +237,24 @@ export class FarmEquipmentView extends LitElement {
       align-items: center;
       gap: 0.25rem;
     }
-
+    
     .recommendations-list {
       color: var(--text, #e4e4e7);
       margin: 0;
       padding-left: 1rem;
       font-size: 0.8rem;
     }
-
+    
     .recommendations-list li {
       margin-bottom: 0.25rem;
     }
-
+    
     .equipment-actions {
       display: flex;
       gap: 0.5rem;
       flex-wrap: wrap;
     }
-
+    
     .action-btn {
       padding: 0.5rem 0.75rem;
       border: 1px solid var(--border, #27272a);
@@ -268,17 +268,17 @@ export class FarmEquipmentView extends LitElement {
       gap: 0.25rem;
       transition: all 0.15s ease;
     }
-
+    
     .action-btn:hover {
       background: var(--bg-hover, #262a35);
       border-color: var(--border-hover, #52525b);
     }
-
+    
     .action-btn.troubleshoot {
       border-color: var(--warn, #f59e0b);
       color: var(--warn, #f59e0b);
     }
-
+    
     .add-equipment {
       border: 2px dashed var(--border, #27272a);
       border-radius: var(--radius-lg, 12px);
@@ -287,29 +287,29 @@ export class FarmEquipmentView extends LitElement {
       cursor: pointer;
       transition: all 0.15s ease;
     }
-
+    
     .add-equipment:hover {
       border-color: var(--ok, #22c55e);
       background: var(--card, #181b22);
     }
-
+    
     .add-equipment-icon {
       font-size: 2rem;
       margin-bottom: 0.5rem;
       opacity: 0.5;
     }
-
+    
     .add-equipment-title {
       font-weight: 600;
       color: var(--text-strong, #fafafa);
       margin-bottom: 0.25rem;
     }
-
+    
     .add-equipment-subtitle {
       font-size: 0.8rem;
       color: var(--muted, #71717a);
     }
-
+    
     .qa-section {
       margin-top: 1.5rem;
       padding: 1rem;
@@ -317,12 +317,12 @@ export class FarmEquipmentView extends LitElement {
       border: 1px solid var(--border, #27272a);
       border-radius: var(--radius-lg, 12px);
     }
-
+    
     .qa-input-wrapper {
       display: flex;
       gap: 0.5rem;
     }
-
+    
     .qa-input {
       flex: 1;
       padding: 0.875rem 1rem;
@@ -333,16 +333,16 @@ export class FarmEquipmentView extends LitElement {
       color: var(--text, #e4e4e7);
       font-family: inherit;
     }
-
+    
     .qa-input::placeholder {
       color: var(--muted, #71717a);
     }
-
+    
     .qa-input:focus {
       outline: none;
       border-color: var(--accent, #ff5c5c);
     }
-
+    
     .qa-btn {
       padding: 0.875rem 1.25rem;
       background: var(--accent, #ff5c5c);
@@ -354,18 +354,18 @@ export class FarmEquipmentView extends LitElement {
       cursor: pointer;
       transition: all 0.15s ease;
     }
-
+    
     .qa-btn:hover {
       background: var(--accent-hover, #ff7070);
     }
-
+    
     .qa-suggestions {
       display: flex;
       gap: 0.5rem;
       margin-top: 0.75rem;
       flex-wrap: wrap;
     }
-
+    
     .qa-suggestion {
       padding: 0.375rem 0.75rem;
       background: var(--bg-elevated, #1a1d25);
@@ -376,7 +376,7 @@ export class FarmEquipmentView extends LitElement {
       cursor: pointer;
       transition: all 0.15s ease;
     }
-
+    
     .qa-suggestion:hover {
       border-color: var(--accent, #ff5c5c);
       color: var(--accent, #ff5c5c);
@@ -469,7 +469,7 @@ export class FarmEquipmentView extends LitElement {
     this.dispatchEvent(
       new CustomEvent("equipment-question", {
         detail: { question: this.qaQuestion },
-      })
+      }),
     );
     this.qaQuestion = "";
   }
@@ -495,7 +495,7 @@ export class FarmEquipmentView extends LitElement {
                 >
                   ${filter.charAt(0).toUpperCase() + filter.slice(1)}
                 </button>
-              `
+              `,
             )}
           </div>
         </div>
@@ -541,13 +541,16 @@ export class FarmEquipmentView extends LitElement {
 
                 <div class="equipment-meta">
                   <span class="meta-item">📍 Last seen: ${eq.lastSeen}</span>
-                  ${eq.nextMaintenanceDue
-                    ? html`<span class="meta-item">🔧 Maintenance: ${eq.nextMaintenanceDue}</span>`
-                    : null}
+                  ${
+                    eq.nextMaintenanceDue
+                      ? html`<span class="meta-item">🔧 Maintenance: ${eq.nextMaintenanceDue}</span>`
+                      : null
+                  }
                 </div>
 
-                ${eq.recommendations.length > 0
-                  ? html`
+                ${
+                  eq.recommendations.length > 0
+                    ? html`
                       <div class="recommendations">
                         <div class="recommendations-title">💡 AI Recommendations</div>
                         <ul class="recommendations-list">
@@ -555,46 +558,61 @@ export class FarmEquipmentView extends LitElement {
                         </ul>
                       </div>
                     `
-                  : null}
+                    : null
+                }
 
                 <div class="equipment-actions">
                   <button
                     class="action-btn"
                     @click=${() =>
-                      this.dispatchEvent(new CustomEvent("equipment-qa", { detail: { deviceId: eq.deviceId } }))}
+                      this.dispatchEvent(
+                        new CustomEvent("equipment-qa", { detail: { deviceId: eq.deviceId } }),
+                      )}
                   >
                     💬 Q&A
                   </button>
                   <button
                     class="action-btn"
                     @click=${() =>
-                      this.dispatchEvent(new CustomEvent("equipment-maintenance", { detail: { deviceId: eq.deviceId } }))}
+                      this.dispatchEvent(
+                        new CustomEvent("equipment-maintenance", {
+                          detail: { deviceId: eq.deviceId },
+                        }),
+                      )}
                   >
                     🔧 Maintenance
                   </button>
                   <button
                     class="action-btn"
                     @click=${() =>
-                      this.dispatchEvent(new CustomEvent("equipment-settings", { detail: { deviceId: eq.deviceId } }))}
+                      this.dispatchEvent(
+                        new CustomEvent("equipment-settings", {
+                          detail: { deviceId: eq.deviceId },
+                        }),
+                      )}
                   >
                     ⚙️ Settings
                   </button>
-                  ${eq.status === "offline"
-                    ? html`
+                  ${
+                    eq.status === "offline"
+                      ? html`
                         <button
                           class="action-btn troubleshoot"
                           @click=${() =>
                             this.dispatchEvent(
-                              new CustomEvent("equipment-troubleshoot", { detail: { deviceId: eq.deviceId } })
+                              new CustomEvent("equipment-troubleshoot", {
+                                detail: { deviceId: eq.deviceId },
+                              }),
                             )}
                         >
                           🔍 Troubleshoot
                         </button>
                       `
-                    : null}
+                      : null
+                  }
                 </div>
               </div>
-            `
+            `,
           )}
 
           <div class="add-equipment" @click=${() => this.dispatchEvent(new CustomEvent("add-equipment"))}>

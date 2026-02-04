@@ -348,175 +348,176 @@ export class FarmMapView extends LitElement {
   static override styles = [
     unsafeCSS(LEAFLET_CSS),
     css`
-    :host {
-      display: block;
-      height: 100%;
-      min-height: 200px;
-    }
-
-    .map-container {
-      width: 100%;
-      height: 100%;
-      min-height: 200px;
-      border-radius: var(--radius-md, 8px);
-      overflow: hidden;
-      background: var(--bg-elevated, #1a1d25);
-    }
-
-    .asset-card {
-      background: var(--card, #181b22);
-      border: 1px solid var(--border, #27272a);
-      border-radius: var(--radius-lg, 12px);
-      padding: 1.25rem;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .asset-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .asset-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: var(--radius-md, 8px);
-      background: linear-gradient(135deg, var(--ok, #22c55e) 0%, #16a34a 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.75rem;
-    }
-
-    .asset-info h2 {
-      margin: 0;
-      font-size: 1.25rem;
-      color: var(--text-strong, #fafafa);
-    }
-
-    .asset-info .type {
-      font-size: 0.8rem;
-      color: var(--muted, #71717a);
-      text-transform: capitalize;
-    }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      padding: 0.375rem 0.75rem;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      margin-left: auto;
-    }
-
-    .status-badge.healthy {
-      background: var(--ok-subtle, rgba(34, 197, 94, 0.12));
-      color: var(--ok, #22c55e);
-    }
-
-    .status-badge.warning {
-      background: var(--warn-subtle, rgba(245, 158, 11, 0.12));
-      color: var(--warn, #f59e0b);
-    }
-
-    .status-badge.critical {
-      background: var(--danger-subtle, rgba(239, 68, 68, 0.12));
-      color: var(--danger, #ef4444);
-    }
-
-    .readings-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem;
-      margin-top: 1rem;
-      flex: 1;
-    }
-
-    .reading-card {
-      background: var(--bg-elevated, #1a1d25);
-      border-radius: var(--radius-md, 8px);
-      padding: 0.875rem;
-    }
-
-    .reading-label {
-      font-size: 0.7rem;
-      color: var(--muted, #71717a);
-      margin-bottom: 0.25rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .reading-value {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--text-strong, #fafafa);
-    }
-
-    .reading-value.warning {
-      color: var(--warn, #f59e0b);
-    }
-
-    .reading-value.critical {
-      color: var(--danger, #ef4444);
-    }
-
-    .quick-actions {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border, #27272a);
-    }
-
-    .action-btn {
-      flex: 1;
-      padding: 0.75rem;
-      border: 1px solid var(--border, #27272a);
-      border-radius: var(--radius-md, 8px);
-      background: var(--card, #181b22);
-      color: var(--text, #e4e4e7);
-      font-size: 0.8rem;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .action-btn:hover {
-      background: var(--bg-hover, #262a35);
-      border-color: var(--border-hover, #52525b);
-    }
-
-    .action-btn.primary {
-      background: var(--ok, #22c55e);
-      border-color: var(--ok, #22c55e);
-      color: white;
-    }
-
-    .action-btn.primary:hover {
-      background: #16a34a;
-    }
-
-    .no-data {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      color: var(--muted, #71717a);
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .no-data-icon {
-      font-size: 2.5rem;
-      margin-bottom: 0.75rem;
-      opacity: 0.5;
-    }
-  `];
+      :host {
+        display: block;
+        height: 100%;
+        min-height: 200px;
+      }
+      
+      .map-container {
+        width: 100%;
+        height: 100%;
+        min-height: 200px;
+        border-radius: var(--radius-md, 8px);
+        overflow: hidden;
+        background: var(--bg-elevated, #1a1d25);
+      }
+      
+      .asset-card {
+        background: var(--card, #181b22);
+        border: 1px solid var(--border, #27272a);
+        border-radius: var(--radius-lg, 12px);
+        padding: 1.25rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .asset-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+      
+      .asset-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: var(--radius-md, 8px);
+        background: linear-gradient(135deg, var(--ok, #22c55e) 0%, #16a34a 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+      }
+      
+      .asset-info h2 {
+        margin: 0;
+        font-size: 1.25rem;
+        color: var(--text-strong, #fafafa);
+      }
+      
+      .asset-info .type {
+        font-size: 0.8rem;
+        color: var(--muted, #71717a);
+        text-transform: capitalize;
+      }
+      
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.375rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        margin-left: auto;
+      }
+      
+      .status-badge.healthy {
+        background: var(--ok-subtle, rgba(34, 197, 94, 0.12));
+        color: var(--ok, #22c55e);
+      }
+      
+      .status-badge.warning {
+        background: var(--warn-subtle, rgba(245, 158, 11, 0.12));
+        color: var(--warn, #f59e0b);
+      }
+      
+      .status-badge.critical {
+        background: var(--danger-subtle, rgba(239, 68, 68, 0.12));
+        color: var(--danger, #ef4444);
+      }
+      
+      .readings-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        margin-top: 1rem;
+        flex: 1;
+      }
+      
+      .reading-card {
+        background: var(--bg-elevated, #1a1d25);
+        border-radius: var(--radius-md, 8px);
+        padding: 0.875rem;
+      }
+      
+      .reading-label {
+        font-size: 0.7rem;
+        color: var(--muted, #71717a);
+        margin-bottom: 0.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      
+      .reading-value {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-strong, #fafafa);
+      }
+      
+      .reading-value.warning {
+        color: var(--warn, #f59e0b);
+      }
+      
+      .reading-value.critical {
+        color: var(--danger, #ef4444);
+      }
+      
+      .quick-actions {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border, #27272a);
+      }
+      
+      .action-btn {
+        flex: 1;
+        padding: 0.75rem;
+        border: 1px solid var(--border, #27272a);
+        border-radius: var(--radius-md, 8px);
+        background: var(--card, #181b22);
+        color: var(--text, #e4e4e7);
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      
+      .action-btn:hover {
+        background: var(--bg-hover, #262a35);
+        border-color: var(--border-hover, #52525b);
+      }
+      
+      .action-btn.primary {
+        background: var(--ok, #22c55e);
+        border-color: var(--ok, #22c55e);
+        color: white;
+      }
+      
+      .action-btn.primary:hover {
+        background: #16a34a;
+      }
+      
+      .no-data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        color: var(--muted, #71717a);
+        text-align: center;
+        padding: 2rem;
+      }
+      
+      .no-data-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.75rem;
+        opacity: 0.5;
+      }
+    `,
+  ];
 
   @property({ type: Object })
   context: FarmMapContext = {
@@ -545,7 +546,12 @@ export class FarmMapView extends LitElement {
   @state()
   private selectedAsset: FarmAsset | null = null;
 
+  @property({ type: String })
+  selectedZoneId: string | null = null;
+
   private mapInstance: unknown = null;
+  private zonePolygons: Map<string, unknown> = new Map();
+  private assetMarkers: Map<string, unknown> = new Map();
 
   override updated(changedProperties: PropertyValues) {
     super.updated(changedProperties);
@@ -557,6 +563,10 @@ export class FarmMapView extends LitElement {
     if (changedProperties.has("layer") && this.mapInstance) {
       this.updateMapLayer();
     }
+    // Update zone selection styles when selectedZoneId changes externally
+    if (changedProperties.has("selectedZoneId") && this.mapInstance) {
+      this.updateZoneStyles();
+    }
   }
 
   private currentTileLayer: unknown = null;
@@ -565,36 +575,39 @@ export class FarmMapView extends LitElement {
     if (!this.mapInstance) return;
     const L = (window as unknown as { L: typeof import("leaflet") }).L;
     if (!L) return;
-    
+
     const map = this.mapInstance as import("leaflet").Map;
-    
+
     // Remove current tile layer
     if (this.currentTileLayer) {
       map.removeLayer(this.currentTileLayer as import("leaflet").TileLayer);
     }
-    
+
     // Add new tile layer based on selection
     let tileLayer: import("leaflet").TileLayer;
     switch (this.layer) {
       case "satellite":
-        tileLayer = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
-          attribution: '&copy; Esri',
-          maxZoom: 19,
-        });
+        tileLayer = L.tileLayer(
+          "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+          {
+            attribution: "&copy; Esri",
+            maxZoom: 19,
+          },
+        );
         break;
       case "terrain":
         tileLayer = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
-          attribution: '&copy; OpenTopoMap',
+          attribution: "&copy; OpenTopoMap",
           maxZoom: 17,
         });
         break;
       default:
         tileLayer = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-          attribution: '&copy; OSM &copy; CARTO',
+          attribution: "&copy; OSM &copy; CARTO",
           maxZoom: 19,
         });
     }
-    
+
     tileLayer.addTo(map);
     this.currentTileLayer = tileLayer;
   }
@@ -603,41 +616,56 @@ export class FarmMapView extends LitElement {
     // Dynamically import Leaflet to avoid SSR issues
     try {
       const L = await import("leaflet");
-      
+
       const mapContainer = this.shadowRoot?.querySelector("#map");
       if (!mapContainer || this.mapInstance) return;
 
       // Default center (can be overridden by context)
       const center = this.context.center || [37.7749, -122.4194]; // Default to SF
-      
+
       const map = L.map(mapContainer as HTMLElement).setView(center, 15);
-      
+
       // Use CartoDB dark tiles for dark theme
       L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
         maxZoom: 19,
       }).addTo(map);
 
-      // Add zones as polygons
+      // Add zones as polygons with click selection
+      this.zonePolygons.clear();
       for (const zone of this.zones) {
         const color = zone.color || ZONE_COLORS[zone.zoneNumber] || "#6b7280";
-        L.polygon(zone.polygon, {
-          color,
+        const isSelected = this.selectedZoneId === zone.id;
+        const polygon = L.polygon(zone.polygon, {
+          color: isSelected ? "#3b82f6" : color,
           fillColor: color,
-          fillOpacity: 0.2,
-          weight: 2,
+          fillOpacity: isSelected ? 0.4 : 0.2,
+          weight: isSelected ? 3 : 2,
         })
           .addTo(map)
           .bindPopup(`<strong>${zone.name}</strong><br>Zone ${zone.zoneNumber}`);
+
+        // Add click handler for field selection
+        polygon.on("click", () => {
+          this.handleZoneClick(zone.id, zone.name);
+        });
+
+        this.zonePolygons.set(zone.id, polygon);
       }
 
-      // Add assets as markers
+      // Add assets as markers with click selection
+      this.assetMarkers.clear();
       for (const asset of this.assets) {
-        const markerColor = asset.status === "critical" ? "#ef4444" : 
-                           asset.status === "warning" ? "#f59e0b" : "#22c55e";
-        
+        const markerColor =
+          asset.status === "critical"
+            ? "#ef4444"
+            : asset.status === "warning"
+              ? "#f59e0b"
+              : "#22c55e";
+
         // Use circle markers for simplicity (no external icon files needed)
-        L.circleMarker([asset.lat, asset.lng], {
+        const marker = L.circleMarker([asset.lat, asset.lng], {
           radius: 10,
           fillColor: markerColor,
           color: "#181b22",
@@ -647,18 +675,77 @@ export class FarmMapView extends LitElement {
         })
           .addTo(map)
           .bindPopup(`<strong>${asset.name}</strong><br>${asset.type}`);
+
+        // Add click handler for asset selection
+        marker.on("click", () => {
+          this.handleAssetClick(asset);
+        });
+
+        this.assetMarkers.set(asset.id, marker);
       }
 
       // Fit bounds if we have a bounding box
       if (this.context.boundingBox) {
         const [minLng, minLat, maxLng, maxLat] = this.context.boundingBox;
-        map.fitBounds([[minLat, minLng], [maxLat, maxLng]]);
+        map.fitBounds([
+          [minLat, minLng],
+          [maxLat, maxLng],
+        ]);
       }
 
       this.mapInstance = map;
       this.mapInitialized = true;
+
+      // Apply initial layer
+      this.updateMapLayer();
     } catch (error) {
       console.error("Failed to initialize map:", error);
+    }
+  }
+
+  private handleZoneClick(zoneId: string, zoneName: string) {
+    this.selectedZoneId = zoneId;
+    this.updateZoneStyles();
+
+    // Dispatch event for parent components
+    this.dispatchEvent(
+      new CustomEvent("zone-select", {
+        detail: { zoneId, zoneName },
+        bubbles: true,
+        composed: true,
+      }),
+    );
+  }
+
+  private handleAssetClick(asset: FarmAsset) {
+    this.selectedAsset = asset;
+
+    // Dispatch event for parent components
+    this.dispatchEvent(
+      new CustomEvent("asset-select", {
+        detail: { asset },
+        bubbles: true,
+        composed: true,
+      }),
+    );
+  }
+
+  private updateZoneStyles() {
+    const L = (window as unknown as { L: typeof import("leaflet") }).L;
+    if (!L) return;
+
+    for (const zone of this.zones) {
+      const polygon = this.zonePolygons.get(zone.id) as import("leaflet").Polygon | undefined;
+      if (!polygon) continue;
+
+      const color = zone.color || ZONE_COLORS[zone.zoneNumber] || "#6b7280";
+      const isSelected = this.selectedZoneId === zone.id;
+
+      polygon.setStyle({
+        color: isSelected ? "#3b82f6" : color,
+        fillOpacity: isSelected ? 0.4 : 0.2,
+        weight: isSelected ? 3 : 2,
+      });
     }
   }
 
@@ -696,8 +783,9 @@ export class FarmMapView extends LitElement {
           </span>
         </div>
 
-        ${asset.readings && asset.readings.length > 0
-          ? html`
+        ${
+          asset.readings && asset.readings.length > 0
+            ? html`
               <div class="readings-grid">
                 ${asset.readings.map(
                   (r) => html`
@@ -705,11 +793,12 @@ export class FarmMapView extends LitElement {
                       <div class="reading-label">${r.label}</div>
                       <div class="reading-value ${r.status || ""}">${r.value}</div>
                     </div>
-                  `
+                  `,
                 )}
               </div>
             `
-          : null}
+            : null
+        }
 
         <div class="quick-actions">
           <button class="action-btn primary" @click=${() => this.dispatchEvent(new CustomEvent("water-request"))}>

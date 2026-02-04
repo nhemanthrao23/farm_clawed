@@ -166,6 +166,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: false
+          fetch-depth: 0
 
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -177,12 +178,18 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install detect-secrets==1.5.0
 
-      - name: Detect secrets
+      - name: Detect secrets (detect-secrets)
         run: |
           if ! detect-secrets scan --baseline .secrets.baseline; then
             echo "::error::Secret scanning failed. See docs/gateway/security.md#secret-scanning-detect-secrets"
             exit 1
           fi
+
+      - name: Detect secrets (gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_ENABLE_SUMMARY: true
 
   checks-windows:
     runs-on: blacksmith-4vcpu-windows-2025
