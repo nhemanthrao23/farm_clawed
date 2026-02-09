@@ -31,6 +31,11 @@ type LifecycleHost = {
   logsEntries: unknown[];
   popStateHandler: () => void;
   topbarObserver: ResizeObserver | null;
+  // AI Provider settings
+  aiProvider: "ollama" | "openai" | "auto";
+  openaiApiKey: string;
+  ollamaStatus: "online" | "offline" | "loading";
+  openaiStatus: "online" | "offline" | "loading";
 };
 
 export function handleConnected(host: LifecycleHost) {
@@ -42,11 +47,47 @@ export function handleConnected(host: LifecycleHost) {
   window.addEventListener("popstate", host.popStateHandler);
   connectGateway(host as unknown as Parameters<typeof connectGateway>[0]);
   startNodesPolling(host as unknown as Parameters<typeof startNodesPolling>[0]);
+  // Initialize AI providers
+  initializeAIProviders(host);
   if (host.tab === "logs") {
     startLogsPolling(host as unknown as Parameters<typeof startLogsPolling>[0]);
   }
   if (host.tab === "debug") {
     startDebugPolling(host as unknown as Parameters<typeof startDebugPolling>[0]);
+  }
+}
+
+/**
+ * Initialize AI providers (Ollama + OpenAI)
+ */
+async function initializeAIProviders(host: LifecycleHost) {
+  // Load saved settings from localStorage
+  const savedProvider = localStorage.getItem("farm_clawed_ai_provider") as "ollama" | "openai" | "auto" | null;
+  const savedApiKey = localStorage.getItem("farm_clawed_openai_key") || "";
+  
+  if (savedProvider) host.aiProvider = savedProvider;
+  if (savedApiKey) host.openaiApiKey = savedApiKey;
+
+  // Check Ollama status
+  try {
+    const ollamaRes = await fetch("http://localhost:11434/api/tags");
+    host.ollamaStatus = ollamaRes.ok ? "online" : "offline";
+  } catch {
+    host.ollamaStatus = "offline";
+  }
+
+  // Check OpenAI status if we have an API key
+  if (host.openaiApiKey) {
+    try {
+      const openaiRes = await fetch("https://api.openai.com/v1/models", {
+        headers: { Authorization: `Bearer ${host.openaiApiKey}` },
+      });
+      host.openaiStatus = openaiRes.ok ? "online" : "offline";
+    } catch {
+      host.openaiStatus = "offline";
+    }
+  } else {
+    host.openaiStatus = "offline";
   }
 }
 

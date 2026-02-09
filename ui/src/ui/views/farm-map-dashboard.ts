@@ -197,356 +197,357 @@ export class FarmMapDashboard extends LitElement {
   static override styles = [
     unsafeCSS(LEAFLET_CSS),
     css`
-    :host {
-      display: block;
-      height: 100%;
-      position: relative;
-      background: var(--bg, #12141a);
-    }
-
-    .map-wrapper {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-    }
-
-    .map-container {
-      width: 100%;
-      height: 100%;
-      background: var(--bg-elevated, #1a1d25);
-    }
-
-    /* Floating panels */
-    .panel {
-      position: absolute;
-      z-index: 1000;
-      background: rgba(24, 27, 34, 0.95);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border, #27272a);
-      border-radius: var(--radius-lg, 12px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-      max-height: calc(100% - 2rem);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* AI Insights Panel - Top Left */
-    .insights-panel {
-      top: 1rem;
-      left: 1rem;
-      width: 320px;
-    }
-
-    /* Automations Panel - Top Right */
-    .automations-panel {
-      top: 1rem;
-      right: 1rem;
-      width: 300px;
-    }
-
-    /* Layer Controls - Bottom Right */
-    .layer-controls {
-      position: absolute;
-      bottom: 1rem;
-      right: 1rem;
-      z-index: 1000;
-      display: flex;
-      gap: 0.25rem;
-      background: rgba(24, 27, 34, 0.95);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border, #27272a);
-      border-radius: var(--radius-md, 8px);
-      padding: 0.25rem;
-    }
-
-    .layer-btn {
-      padding: 0.5rem 0.75rem;
-      border: none;
-      background: transparent;
-      border-radius: 6px;
-      font-size: 0.75rem;
-      color: var(--muted, #71717a);
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .layer-btn:hover {
-      color: var(--text, #e4e4e7);
-    }
-
-    .layer-btn.active {
-      background: var(--card, #181b22);
-      color: var(--text-strong, #fafafa);
-    }
-
-    /* Panel header */
-    .panel-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.875rem 1rem;
-      border-bottom: 1px solid var(--border, #27272a);
-      flex-shrink: 0;
-    }
-
-    .panel-title {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-strong, #fafafa);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .panel-badge {
-      font-size: 0.65rem;
-      padding: 0.125rem 0.375rem;
-      background: var(--accent, #ff5c5c);
-      color: white;
-      border-radius: 9999px;
-    }
-
-    .panel-toggle {
-      background: none;
-      border: none;
-      color: var(--muted, #71717a);
-      cursor: pointer;
-      padding: 0.25rem;
-      font-size: 0.8rem;
-    }
-
-    .panel-toggle:hover {
-      color: var(--text, #e4e4e7);
-    }
-
-    /* Panel content */
-    .panel-content {
-      padding: 0.75rem;
-      overflow-y: auto;
-      flex: 1;
-    }
-
-    .panel-content.collapsed {
-      display: none;
-    }
-
-    /* Insight cards */
-    .insight-card {
-      background: var(--bg-elevated, #1a1d25);
-      border-radius: var(--radius-md, 8px);
-      padding: 0.75rem;
-      margin-bottom: 0.5rem;
-      border-left: 3px solid;
-    }
-
-    .insight-card.info {
-      border-left-color: var(--info, #3b82f6);
-    }
-
-    .insight-card.warning {
-      border-left-color: var(--warn, #f59e0b);
-    }
-
-    .insight-card.action {
-      border-left-color: var(--accent, #ff5c5c);
-    }
-
-    .insight-card.success {
-      border-left-color: var(--ok, #22c55e);
-    }
-
-    .insight-title {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text-strong, #fafafa);
-      margin-bottom: 0.25rem;
-    }
-
-    .insight-message {
-      font-size: 0.75rem;
-      color: var(--muted, #71717a);
-      line-height: 1.4;
-    }
-
-    .insight-time {
-      font-size: 0.65rem;
-      color: var(--muted, #71717a);
-      margin-top: 0.375rem;
-      opacity: 0.7;
-    }
-
-    /* Automation cards */
-    .automation-card {
-      background: var(--bg-elevated, #1a1d25);
-      border: 1px solid var(--border, #27272a);
-      border-radius: var(--radius-md, 8px);
-      padding: 0.75rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .automation-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.375rem;
-    }
-
-    .automation-icon {
-      font-size: 0.9rem;
-    }
-
-    .automation-action {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text-strong, #fafafa);
-      flex: 1;
-    }
-
-    .automation-confidence {
-      font-size: 0.65rem;
-      color: var(--ok, #22c55e);
-    }
-
-    .automation-target {
-      font-size: 0.7rem;
-      color: var(--muted, #71717a);
-      margin-bottom: 0.5rem;
-    }
-
-    .automation-buttons {
-      display: flex;
-      gap: 0.375rem;
-    }
-
-    .auto-btn {
-      flex: 1;
-      padding: 0.375rem 0.5rem;
-      border-radius: 4px;
-      font-size: 0.7rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .auto-btn.approve {
-      background: var(--ok, #22c55e);
-      border: none;
-      color: white;
-    }
-
-    .auto-btn.approve:hover {
-      background: #16a34a;
-    }
-
-    .auto-btn.reject {
-      background: transparent;
-      border: 1px solid var(--border, #27272a);
-      color: var(--muted, #71717a);
-    }
-
-    .auto-btn.reject:hover {
-      border-color: var(--danger, #ef4444);
-      color: var(--danger, #ef4444);
-    }
-
-    /* Empty state */
-    .empty-state {
-      text-align: center;
-      padding: 1.5rem;
-      color: var(--muted, #71717a);
-    }
-
-    .empty-icon {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      opacity: 0.5;
-    }
-
-    .empty-text {
-      font-size: 0.75rem;
-    }
-
-    /* Zoom controls */
-    .zoom-controls {
-      position: absolute;
-      bottom: 1rem;
-      left: 1rem;
-      z-index: 1000;
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-
-    .zoom-btn {
-      width: 32px;
-      height: 32px;
-      background: rgba(24, 27, 34, 0.95);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border, #27272a);
-      border-radius: 6px;
-      color: var(--text, #e4e4e7);
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.15s ease;
-    }
-
-    .zoom-btn:hover {
-      background: var(--card, #181b22);
-      border-color: var(--border-hover, #52525b);
-    }
-
-    /* Center button */
-    .center-btn {
-      position: absolute;
-      bottom: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1000;
-      padding: 0.5rem 1rem;
-      background: rgba(24, 27, 34, 0.95);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border, #27272a);
-      border-radius: var(--radius-md, 8px);
-      color: var(--text, #e4e4e7);
-      font-size: 0.75rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.375rem;
-      transition: all 0.15s ease;
-    }
-
-    .center-btn:hover {
-      background: var(--card, #181b22);
-      border-color: var(--border-hover, #52525b);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .insights-panel,
-      .automations-panel {
-        width: calc(50% - 1.5rem);
+      :host {
+        display: block;
+        height: 100%;
+        position: relative;
+        background: var(--bg, #12141a);
       }
-    }
-
-    @media (max-width: 600px) {
+      
+      .map-wrapper {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+      }
+      
+      .map-container {
+        width: 100%;
+        height: 100%;
+        background: var(--bg-elevated, #1a1d25);
+      }
+      
+      /* Floating panels */
+      .panel {
+        position: absolute;
+        z-index: 1000;
+        background: rgba(24, 27, 34, 0.95);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--border, #27272a);
+        border-radius: var(--radius-lg, 12px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        max-height: calc(100% - 2rem);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* AI Insights Panel - Top Left */
       .insights-panel {
-        width: calc(100% - 2rem);
-        left: 1rem;
-        right: 1rem;
         top: 1rem;
-        max-height: 40%;
+        left: 1rem;
+        width: 320px;
       }
-
+      
+      /* Automations Panel - Top Right */
       .automations-panel {
+        top: 1rem;
+        right: 1rem;
+        width: 300px;
+      }
+      
+      /* Layer Controls - Bottom Right */
+      .layer-controls {
+        position: absolute;
+        bottom: 1rem;
+        right: 1rem;
+        z-index: 1000;
+        display: flex;
+        gap: 0.25rem;
+        background: rgba(24, 27, 34, 0.95);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--border, #27272a);
+        border-radius: var(--radius-md, 8px);
+        padding: 0.25rem;
+      }
+      
+      .layer-btn {
+        padding: 0.5rem 0.75rem;
+        border: none;
+        background: transparent;
+        border-radius: 6px;
+        font-size: 0.75rem;
+        color: var(--muted, #71717a);
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      
+      .layer-btn:hover {
+        color: var(--text, #e4e4e7);
+      }
+      
+      .layer-btn.active {
+        background: var(--card, #181b22);
+        color: var(--text-strong, #fafafa);
+      }
+      
+      /* Panel header */
+      .panel-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.875rem 1rem;
+        border-bottom: 1px solid var(--border, #27272a);
+        flex-shrink: 0;
+      }
+      
+      .panel-title {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--text-strong, #fafafa);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .panel-badge {
+        font-size: 0.65rem;
+        padding: 0.125rem 0.375rem;
+        background: var(--accent, #ff5c5c);
+        color: white;
+        border-radius: 9999px;
+      }
+      
+      .panel-toggle {
+        background: none;
+        border: none;
+        color: var(--muted, #71717a);
+        cursor: pointer;
+        padding: 0.25rem;
+        font-size: 0.8rem;
+      }
+      
+      .panel-toggle:hover {
+        color: var(--text, #e4e4e7);
+      }
+      
+      /* Panel content */
+      .panel-content {
+        padding: 0.75rem;
+        overflow-y: auto;
+        flex: 1;
+      }
+      
+      .panel-content.collapsed {
         display: none;
       }
-    }
-  `];
+      
+      /* Insight cards */
+      .insight-card {
+        background: var(--bg-elevated, #1a1d25);
+        border-radius: var(--radius-md, 8px);
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        border-left: 3px solid;
+      }
+      
+      .insight-card.info {
+        border-left-color: var(--info, #3b82f6);
+      }
+      
+      .insight-card.warning {
+        border-left-color: var(--warn, #f59e0b);
+      }
+      
+      .insight-card.action {
+        border-left-color: var(--accent, #ff5c5c);
+      }
+      
+      .insight-card.success {
+        border-left-color: var(--ok, #22c55e);
+      }
+      
+      .insight-title {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--text-strong, #fafafa);
+        margin-bottom: 0.25rem;
+      }
+      
+      .insight-message {
+        font-size: 0.75rem;
+        color: var(--muted, #71717a);
+        line-height: 1.4;
+      }
+      
+      .insight-time {
+        font-size: 0.65rem;
+        color: var(--muted, #71717a);
+        margin-top: 0.375rem;
+        opacity: 0.7;
+      }
+      
+      /* Automation cards */
+      .automation-card {
+        background: var(--bg-elevated, #1a1d25);
+        border: 1px solid var(--border, #27272a);
+        border-radius: var(--radius-md, 8px);
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .automation-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.375rem;
+      }
+      
+      .automation-icon {
+        font-size: 0.9rem;
+      }
+      
+      .automation-action {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--text-strong, #fafafa);
+        flex: 1;
+      }
+      
+      .automation-confidence {
+        font-size: 0.65rem;
+        color: var(--ok, #22c55e);
+      }
+      
+      .automation-target {
+        font-size: 0.7rem;
+        color: var(--muted, #71717a);
+        margin-bottom: 0.5rem;
+      }
+      
+      .automation-buttons {
+        display: flex;
+        gap: 0.375rem;
+      }
+      
+      .auto-btn {
+        flex: 1;
+        padding: 0.375rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+      
+      .auto-btn.approve {
+        background: var(--ok, #22c55e);
+        border: none;
+        color: white;
+      }
+      
+      .auto-btn.approve:hover {
+        background: #16a34a;
+      }
+      
+      .auto-btn.reject {
+        background: transparent;
+        border: 1px solid var(--border, #27272a);
+        color: var(--muted, #71717a);
+      }
+      
+      .auto-btn.reject:hover {
+        border-color: var(--danger, #ef4444);
+        color: var(--danger, #ef4444);
+      }
+      
+      /* Empty state */
+      .empty-state {
+        text-align: center;
+        padding: 1.5rem;
+        color: var(--muted, #71717a);
+      }
+      
+      .empty-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        opacity: 0.5;
+      }
+      
+      .empty-text {
+        font-size: 0.75rem;
+      }
+      
+      /* Zoom controls */
+      .zoom-controls {
+        position: absolute;
+        bottom: 1rem;
+        left: 1rem;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+      
+      .zoom-btn {
+        width: 32px;
+        height: 32px;
+        background: rgba(24, 27, 34, 0.95);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--border, #27272a);
+        border-radius: 6px;
+        color: var(--text, #e4e4e7);
+        font-size: 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s ease;
+      }
+      
+      .zoom-btn:hover {
+        background: var(--card, #181b22);
+        border-color: var(--border-hover, #52525b);
+      }
+      
+      /* Center button */
+      .center-btn {
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        padding: 0.5rem 1rem;
+        background: rgba(24, 27, 34, 0.95);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--border, #27272a);
+        border-radius: var(--radius-md, 8px);
+        color: var(--text, #e4e4e7);
+        font-size: 0.75rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        transition: all 0.15s ease;
+      }
+      
+      .center-btn:hover {
+        background: var(--card, #181b22);
+        border-color: var(--border-hover, #52525b);
+      }
+      
+      /* Responsive */
+      @media (max-width: 768px) {
+        .insights-panel,
+        .automations-panel {
+          width: calc(50% - 1.5rem);
+        }
+      }
+      
+      @media (max-width: 600px) {
+        .insights-panel {
+          width: calc(100% - 2rem);
+          left: 1rem;
+          right: 1rem;
+          top: 1rem;
+          max-height: 40%;
+        }
+      
+        .automations-panel {
+          display: none;
+        }
+      }
+    `,
+  ];
 
   @property({ type: Object })
   context: FarmMapContext = {
@@ -645,10 +646,10 @@ export class FarmMapDashboard extends LitElement {
 
     // Dynamic import of Leaflet
     const L = await import("leaflet");
-    
+
     // Get center from context or default
     const center = this.context.center || [37.7749, -122.4194];
-    
+
     this.mapInstance = L.map(mapEl, {
       center: center as [number, number],
       zoom: 16,
@@ -679,7 +680,8 @@ export class FarmMapDashboard extends LitElement {
 
     switch (this.activeLayer) {
       case "satellite":
-        tileUrl = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
+        tileUrl =
+          "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
         attribution = "&copy; Esri";
         break;
       case "terrain":
@@ -705,8 +707,12 @@ export class FarmMapDashboard extends LitElement {
 
     // Add markers for assets
     for (const asset of this.assets) {
-      const statusColor = asset.status === "warning" ? "#f59e0b" :
-                         asset.status === "critical" ? "#ef4444" : "#22c55e";
+      const statusColor =
+        asset.status === "warning"
+          ? "#f59e0b"
+          : asset.status === "critical"
+            ? "#ef4444"
+            : "#22c55e";
 
       const icon = L.divIcon({
         className: "custom-marker",
@@ -726,17 +732,21 @@ export class FarmMapDashboard extends LitElement {
         iconAnchor: [16, 16],
       });
 
-      const marker = L.marker([asset.lat, asset.lng], { icon })
-        .addTo(this.mapInstance)
-        .bindPopup(`
+      const marker = L.marker([asset.lat, asset.lng], { icon }).addTo(this.mapInstance).bindPopup(`
           <div style="min-width: 150px;">
             <div style="font-weight: 600; margin-bottom: 8px;">${asset.name}</div>
-            ${asset.readings?.map(r => `
+            ${
+              asset.readings
+                ?.map(
+                  (r) => `
               <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
                 <span style="color: #71717a;">${r.label}</span>
                 <span style="color: ${r.status === "warning" ? "#f59e0b" : "#fafafa"};">${r.value}</span>
               </div>
-            `).join("") || ""}
+            `,
+                )
+                .join("") || ""
+            }
           </div>
         `);
 
@@ -756,7 +766,7 @@ export class FarmMapDashboard extends LitElement {
     // Add zone polygons
     for (const zone of this.zones) {
       const color = zone.color || ZONE_COLORS[zone.zoneNumber] || "#6b7280";
-      
+
       const polygon = L.polygon(zone.polygon, {
         color,
         fillColor: color,
@@ -806,7 +816,7 @@ export class FarmMapDashboard extends LitElement {
     const now = new Date();
     const diffMs = now.getTime() - date.getTime();
     const diffMins = Math.floor(diffMs / 60000);
-    
+
     if (diffMins < 1) return "Just now";
     if (diffMins < 60) return `${diffMins}m ago`;
     if (diffMins < 1440) return `${Math.floor(diffMins / 60)}h ago`;
@@ -827,25 +837,28 @@ export class FarmMapDashboard extends LitElement {
           <span class="panel-title">
             🤖 AI Insights
           </span>
-          <button class="panel-toggle" @click=${() => this.insightsCollapsed = !this.insightsCollapsed}>
+          <button class="panel-toggle" @click=${() => (this.insightsCollapsed = !this.insightsCollapsed)}>
             ${this.insightsCollapsed ? "▼" : "▲"}
           </button>
         </div>
         <div class="panel-content ${this.insightsCollapsed ? "collapsed" : ""}">
-          ${this.insights.length === 0
-            ? html`
-                <div class="empty-state">
-                  <div class="empty-icon">✨</div>
-                  <div class="empty-text">No new insights</div>
-                </div>
-              `
-            : this.insights.map(insight => html`
+          ${
+            this.insights.length === 0
+              ? html`
+                  <div class="empty-state">
+                    <div class="empty-icon">✨</div>
+                    <div class="empty-text">No new insights</div>
+                  </div>
+                `
+              : this.insights.map(
+                  (insight) => html`
                 <div class="insight-card ${insight.type}">
                   <div class="insight-title">${insight.title}</div>
                   <div class="insight-message">${insight.message}</div>
                   <div class="insight-time">${this.formatTime(insight.timestamp)}</div>
                 </div>
-              `)
+              `,
+                )
           }
         </div>
       </div>
@@ -857,19 +870,21 @@ export class FarmMapDashboard extends LitElement {
             ⚡ Automations
             ${pendingCount > 0 ? html`<span class="panel-badge">${pendingCount}</span>` : nothing}
           </span>
-          <button class="panel-toggle" @click=${() => this.automationsCollapsed = !this.automationsCollapsed}>
+          <button class="panel-toggle" @click=${() => (this.automationsCollapsed = !this.automationsCollapsed)}>
             ${this.automationsCollapsed ? "▼" : "▲"}
           </button>
         </div>
         <div class="panel-content ${this.automationsCollapsed ? "collapsed" : ""}">
-          ${this.automations.length === 0
-            ? html`
-                <div class="empty-state">
-                  <div class="empty-icon">✅</div>
-                  <div class="empty-text">No pending actions</div>
-                </div>
-              `
-            : this.automations.map(auto => html`
+          ${
+            this.automations.length === 0
+              ? html`
+                  <div class="empty-state">
+                    <div class="empty-icon">✅</div>
+                    <div class="empty-text">No pending actions</div>
+                  </div>
+                `
+              : this.automations.map(
+                  (auto) => html`
                 <div class="automation-card">
                   <div class="automation-header">
                     <span class="automation-icon">${this.getTypeIcon(auto.type)}</span>
@@ -886,7 +901,8 @@ export class FarmMapDashboard extends LitElement {
                     </button>
                   </div>
                 </div>
-              `)
+              `,
+                )
           }
         </div>
       </div>
@@ -906,15 +922,15 @@ export class FarmMapDashboard extends LitElement {
       <div class="layer-controls">
         <button 
           class="layer-btn ${this.activeLayer === "default" ? "active" : ""}"
-          @click=${() => this.activeLayer = "default"}
+          @click=${() => (this.activeLayer = "default")}
         >Default</button>
         <button 
           class="layer-btn ${this.activeLayer === "satellite" ? "active" : ""}"
-          @click=${() => this.activeLayer = "satellite"}
+          @click=${() => (this.activeLayer = "satellite")}
         >Satellite</button>
         <button 
           class="layer-btn ${this.activeLayer === "terrain" ? "active" : ""}"
-          @click=${() => this.activeLayer = "terrain"}
+          @click=${() => (this.activeLayer = "terrain")}
         >Terrain</button>
       </div>
     `;
@@ -926,4 +942,3 @@ declare global {
     "farm-map-dashboard": FarmMapDashboard;
   }
 }
-

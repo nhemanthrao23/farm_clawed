@@ -13,22 +13,25 @@ export class FarmExperimentView extends LitElement {
     :host {
       display: block;
       padding: 1rem;
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family:
+        system-ui,
+        -apple-system,
+        sans-serif;
     }
-
+    
     .header {
       margin-bottom: 1.5rem;
     }
-
+    
     h1 {
       margin: 0 0 0.5rem 0;
       font-size: 1.5rem;
     }
-
+    
     .subtitle {
       color: var(--color-text-secondary, #6b7280);
     }
-
+    
     .tabs {
       display: flex;
       gap: 0.5rem;
@@ -36,7 +39,7 @@ export class FarmExperimentView extends LitElement {
       border-bottom: 1px solid var(--color-border, #e5e7eb);
       padding-bottom: 0.5rem;
     }
-
+    
     .tab {
       padding: 0.5rem 1rem;
       border: none;
@@ -46,25 +49,25 @@ export class FarmExperimentView extends LitElement {
       color: var(--color-text-secondary, #6b7280);
       border-radius: 0.375rem;
     }
-
+    
     .tab.active {
       background: var(--color-bg-secondary, #f3f4f6);
       color: var(--color-text-primary, #1a1a1a);
     }
-
+    
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1rem;
     }
-
+    
     .card {
       background: var(--color-bg-card, #fff);
       border: 1px solid var(--color-border, #e5e7eb);
       border-radius: 0.5rem;
       padding: 1rem;
     }
-
+    
     .card-title {
       font-weight: 600;
       margin-bottom: 0.75rem;
@@ -72,70 +75,70 @@ export class FarmExperimentView extends LitElement {
       align-items: center;
       gap: 0.5rem;
     }
-
+    
     .metric {
       display: flex;
       justify-content: space-between;
       padding: 0.5rem 0;
       border-bottom: 1px solid var(--color-border, #e5e7eb);
     }
-
+    
     .metric:last-child {
       border-bottom: none;
     }
-
+    
     .metric-value {
       font-weight: 600;
     }
-
+    
     .metric-value.warning {
       color: #f59e0b;
     }
-
+    
     .metric-value.good {
       color: #22c55e;
     }
-
+    
     .analysis-box {
       background: var(--color-bg-secondary, #f3f4f6);
       border-radius: 0.375rem;
       padding: 1rem;
       margin-top: 1rem;
     }
-
+    
     .analysis-title {
       font-weight: 600;
       margin-bottom: 0.5rem;
     }
-
+    
     .recommendation-item {
       padding: 0.5rem;
       margin: 0.5rem 0;
       border-radius: 0.25rem;
     }
-
+    
     .recommendation-item.high {
       background: #fef2f2;
       border-left: 3px solid #ef4444;
     }
-
+    
     .recommendation-item.medium {
       background: #fffbeb;
       border-left: 3px solid #f59e0b;
     }
-
+    
     .recommendation-item.low {
       background: #f0fdf4;
       border-left: 3px solid #22c55e;
     }
-
+    
     .scale-section {
       margin-top: 1.5rem;
       padding: 1rem;
       background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
       border-radius: 0.5rem;
     }
-
+    
     .scale-title {
       font-weight: 600;
       margin-bottom: 0.5rem;
@@ -350,7 +353,7 @@ export class FarmExperimentView extends LitElement {
     return html`
       <div class="card">
         <div class="card-title">📊 ROI Dashboard</div>
-
+      
         <div class="grid" style="margin-top: 1rem">
           <div>
             <h3>Investment</h3>
@@ -371,7 +374,7 @@ export class FarmExperimentView extends LitElement {
               <span class="metric-value"><strong>$105</strong></span>
             </div>
           </div>
-
+      
           <div>
             <h3>Expected Returns (Monthly)</h3>
             <div class="metric">
@@ -392,7 +395,7 @@ export class FarmExperimentView extends LitElement {
             </div>
           </div>
         </div>
-
+      
         <div class="analysis-box">
           <div class="analysis-title">Payback Analysis</div>
           <p>At ~$47/month benefit, equipment pays for itself in <strong>2.2 months</strong>.</p>
@@ -408,4 +411,3 @@ declare global {
     "farm-experiment-view": FarmExperimentView;
   }
 }
-

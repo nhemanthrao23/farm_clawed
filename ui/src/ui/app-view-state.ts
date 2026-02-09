@@ -145,6 +145,11 @@ export type AppViewState = {
   logsTruncated: boolean;
   // Farm chat bubble state
   farmBubbleMessages: Array<{ id: string; role: string; content: string; timestamp: string }>;
+  // AI Provider state
+  aiProvider: "ollama" | "openai" | "auto";
+  openaiApiKey: string;
+  ollamaStatus: "online" | "offline" | "loading";
+  openaiStatus: "online" | "offline" | "loading";
   client: GatewayBrowserClient | null;
   connect: () => void;
   setTab: (tab: Tab) => void;

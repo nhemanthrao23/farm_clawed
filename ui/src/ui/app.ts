@@ -240,6 +240,11 @@ export class OpenClawApp extends LitElement {
   @state() logsTruncated = false;
   // Farm chat bubble state
   @state() farmBubbleMessages: Array<{ id: string; role: string; content: string; timestamp: string }> = [];
+  // AI Provider state
+  @state() aiProvider: "ollama" | "openai" | "auto" = "auto";
+  @state() openaiApiKey = "";
+  @state() ollamaStatus: "online" | "offline" | "loading" = "loading";
+  @state() openaiStatus: "online" | "offline" | "loading" = "loading";
   @state() logsCursor: number | null = null;
   @state() logsLastFetchAt: number | null = null;
   @state() logsLimit = 500;

@@ -1,15 +1,15 @@
-# farm_clawed — AI-first Farm Operator (Permaculture-ready)
+# farm_clawed — AI Farm Command Center
 
 <p align="center">
   <img src="ui/public/assets/farm-clawed-logo.svg" alt="farm_clawed" width="120" height="120">
 </p>
 
 <p align="center">
-  <strong>Your autonomous farming assistant that grows with you</strong>
+  <strong>Your autonomous farming command center with AI copilot</strong>
 </p>
 
 <p align="center">
-  From a single potted lemon to a full permaculture food forest
+  Connect John Deere or FieldView. Or start fresh. AI handles the rest.
 </p>
 
 <p align="center">
@@ -18,44 +18,124 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="MIT License"></a>
 </p>
 
-**farm_clawed** is an _AI-first farm automation platform_ you run on your own devices. Whether you're nurturing a single container plant or managing a commercial permaculture operation, farm_clawed provides intelligent recommendations, safety-first automation, and ROI tracking.
-
 <p align="center">
-  <img src="docs/images/farm-clawed-dashboard.png" alt="farm_clawed Dashboard - Farm Map with AI Insights and Floating Chat" width="800">
+  <img src="https://img.shields.io/badge/John_Deere-367C2B?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyeiIvPjwvc3ZnPg==&logoColor=white" alt="John Deere Compatible">
+  <img src="https://img.shields.io/badge/Climate_FieldView-00A3E0?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0xMiAyQzYuNDggMiAyIDYuNDggMiAxMnM0LjQ4IDEwIDEwIDEwIDEwLTQuNDggMTAtMTBTMTcuNTIgMiAxMiAyeiIvPjwvc3ZnPg==&logoColor=white" alt="FieldView Compatible">
+  <img src="https://img.shields.io/badge/IFTTT-000000?style=flat-square&logo=ifttt&logoColor=white" alt="IFTTT Webhooks">
 </p>
 
+---
+
+## What is farm_clawed?
+
+**farm_clawed** is an AI-powered command center for your farm. Think of it as mission control — you see your fields on a map, and an AI assistant helps you make decisions about water, soil, pests, and operations.
+
+**For farmers:** Connect your existing John Deere or FieldView account, and farm_clawed imports your fields automatically. Or start fresh with a simple setup wizard.
+
+**For engineers:** farm_clawed is a modular, TypeScript platform with OAuth2 connectors, a plugin architecture, and local LLM support. Contribute connectors, skills, or UI components.
+
+---
+
+## The Command Center
+
 <p align="center">
-  <em>Farm Map view with AI Insights panel and floating chat assistant</em>
+  <img src="docs/images/farm-clawed-dashboard.png" alt="farm_clawed Command Center - Split view with map and AI assistant" width="800">
 </p>
+
+The Command Center is your primary interface:
+
+| Left Side (60%) | Right Side (40%) |
+|-----------------|------------------|
+| Interactive map with your fields | AI assistant that knows your farm |
+| Satellite/terrain layer toggle | Recommendations based on weather and soil |
+| Click any field to select it | Quick actions: /status, /water, /plan |
+| Color-coded field health status | Pending approvals and alerts |
+
+---
+
+## Three Ways to Get Started
+
+### 1. Connect John Deere
+
+If you already use John Deere Operations Center:
+
+```
+1. Click "Connect John Deere" in setup
+2. Sign in with your Deere account
+3. Select your organization
+4. farm_clawed imports your fields, equipment, and operations
+```
+
+Your field boundaries, crop types, and work plans sync automatically.
+
+### 2. Connect Climate FieldView
+
+If you already use Climate FieldView:
+
+```
+1. Click "Connect FieldView" in setup
+2. Sign in with your Climate account
+3. Select your farm
+4. farm_clawed imports your fields and prescriptions
+```
+
+Your field boundaries, activities, and imagery data sync automatically.
+
+### 3. Start Fresh
+
+No existing farm management system? No problem:
+
+```
+1. Click "Start Fresh" in setup
+2. Choose your farm type (garden, orchard, ranch, row crop)
+3. Draw fields on the map or import CSV/GeoJSON
+4. Configure AI preferences
+```
+
+Works immediately with manual data entry. Add sensors and automations later.
+
+---
 
 ## Key Features
 
-- **AI-First Interface** — ChatGPT-style conversational UI as your primary farming tool
-- **Floating AI Assistant** — Access farm_clawed from any page via the floating chat bubble
-- **Day 1 Value** — Works immediately with manual logs and templates, no hardware required
-- **Permaculture-Ready** — Native support for zones, sectors, guilds, and succession planning
-- **Safety-First Automation** — Toyota-style Jidoka principles for physical automation
-- **Local LLM Support** — Run with Ollama for privacy and offline operation
-- **Interactive Farm Map** — Satellite, terrain, and default map layers with asset overlays
-- **Scale Smoothly** — From container gardening to commercial operations
+| Feature | What It Does |
+|---------|--------------|
+| **Split-View Command Center** | Map + AI assistant side by side |
+| **FMIS Integration** | Import from John Deere or FieldView |
+| **AI Recommendations** | Get suggestions based on weather, soil, and history |
+| **Safety-First Automation** | All actions require approval by default |
+| **IFTTT Webhooks** | Control any smart device through IFTTT |
+| **Local LLM Support** | Run offline with Ollama for privacy |
+| **Permaculture Ready** | Optional zones, sectors, and guild planning |
 
-## What's New
+---
 
-### Conversational Dashboard
-The farm_clawed dashboard is designed like ChatGPT — your AI assistant is the interface, not just a feature. Ask questions, get sensor cards, approve automations, all in a natural conversation flow.
+## Quick Start
 
-### Floating Chat Bubble
-Access farm_clawed from anywhere in the app. The floating 🌱 button in the bottom-right corner opens a quick chat panel with full context awareness of what you're viewing.
+### Install
 
-### Farm Map View
-Full-screen interactive map with:
-- **Default/Satellite/Terrain** layer switching
-- **AI Insights** floating panel
-- **Pending Automations** overlay
-- **Asset markers** with status colors
+```bash
+# Node 22+ required
+npm install -g farm_clawed@latest
 
-### Local LLM with Ollama
-Run farm_clawed completely offline with Ollama:
+# Run onboarding wizard
+farm_clawed onboard
+```
+
+### Run Locally (No External Keys Required)
+
+```bash
+# Start the gateway
+farm_clawed gateway --port 18789
+
+# Open the Command Center
+open http://localhost:18789
+```
+
+The demo runs in simulation mode — you can explore all features without connecting external services.
+
+### With Local AI (Ollama)
+
 ```bash
 # Install Ollama
 brew install ollama
@@ -66,299 +146,310 @@ ollama pull llama3.2
 # farm_clawed auto-detects Ollama on localhost:11434
 ```
 
-## Choose Your Path
+---
 
-### Permaculture Depth (0-3)
+## Choose Your Settings
 
-| Level | Name | What You Get |
+### Permaculture Depth
+
+| Level | Name | Best For |
+|-------|------|----------|
+| 0 | Standard | Conventional farming, row crops |
+| 1 | Regen-Friendly | Soil health focus, cover crops |
+| 2 | Permaculture-Lite | Food forests, guilds, zones |
+| 3 | Full Permaculture | Complete design with succession |
+
+### Automation Level
+
+| Level | Name | How It Works |
 |-------|------|--------------|
-| 0 | Standard | Conventional farm ops, fields/blocks/irrigation zones |
-| 1 | Regen-Friendly | Soil health focus, water conservation, IPM basics |
-| 2 | Permaculture-Lite | Optional zones/sectors, guild guidance |
-| 3 | Full Permaculture | Complete zones/sectors, guilds, stacking, succession |
-
-### Automation Level (0-4)
-
-| Level | Name | Control Style |
-|-------|------|--------------|
-| 0 | Observe | Dashboards and logs only |
-| 1 | Assist | AI recommendations + checklists |
-| 2 | Propose | Human-in-loop approvals (default) |
+| 0 | Observe | View data only, no automation |
+| 1 | Assist | AI suggestions, you execute |
+| 2 | Propose | AI proposes, you approve (default) |
 | 3 | Auto-Guardrails | Automatic within safety limits |
-| 4 | Full Ops | Hardware integration with strict Jidoka |
+| 4 | Full Ops | Full automation with safety stops |
 
-## Quick Start
+---
 
-### AI-Only Day 1 (No Hardware)
+## For Engineers
 
-Get started in 5 minutes with AI recommendations based on your manual inputs:
+### Architecture
 
-```bash
-# Install
-npm install -g farm_clawed@latest
-
-# Initialize your farm context
-farm_clawed farm init
-
-# Answer the setup wizard questions about your farm
-# Then get your first AI analysis:
-farm_clawed farm schedule run
+```
+farm_clawed/
+├── src/
+│   ├── connectors/
+│   │   ├── fmis/
+│   │   │   ├── deere/          # John Deere OAuth2 connector
+│   │   │   ├── fieldview/      # Climate FieldView connector
+│   │   │   └── csv-import/     # CSV/GeoJSON import
+│   │   └── ifttt-webhooks/     # Generic IFTTT actuator
+│   ├── farm/
+│   │   ├── safety/             # Guardrails and Jidoka
+│   │   └── ai/                 # AI provider abstraction
+│   └── security/
+│       ├── secrets-redactor.ts # Log sanitization
+│       └── env-validator.ts    # Runtime config validation
+├── ui/src/ui/views/
+│   ├── farm-command-center.ts  # Split-view interface
+│   ├── farm-ai-panel.ts        # AI assistant component
+│   ├── farm-onboarding.ts      # Multi-path setup wizard
+│   └── farm-map.ts             # Interactive map with Leaflet
+└── extensions/
+    └── ifttt-smartlife/        # SmartLife scene integration
 ```
 
-### Run the Lemon Tree Experiment
+### Data Flow
 
-See farm_clawed in action with our flagship demo:
-
-```bash
-# Start the gateway
-farm_clawed gateway --port 18789
-
-# Open the web UI
-open http://localhost:18789
-
-# Navigate to Farm tab to see the dashboard
+```mermaid
+flowchart LR
+    subgraph External[External Systems]
+        JD[John Deere API]
+        FV[FieldView API]
+        IFTTT[IFTTT Webhooks]
+    end
+    
+    subgraph Connectors[Connectors Layer]
+        DeereConn[Deere Connector]
+        FVConn[FieldView Connector]
+        IFTTTConn[IFTTT Connector]
+    end
+    
+    subgraph Core[Core System]
+        AI[AI Engine]
+        Safety[Safety/Guardrails]
+        Approvals[Approval Queue]
+    end
+    
+    subgraph UI[User Interface]
+        CommandCenter[Command Center]
+        Map[Map View]
+        AIPanel[AI Panel]
+    end
+    
+    JD --> DeereConn
+    FV --> FVConn
+    DeereConn --> Core
+    FVConn --> Core
+    Core --> CommandCenter
+    Core --> AIPanel
+    Safety --> Approvals
+    Approvals --> IFTTTConn
+    IFTTTConn --> IFTTT
 ```
 
-The experiment demonstrates:
-- Real sensor data (Tuya/SmartLife soil sensor)
-- AI-driven watering recommendations
-- Safety guardrails in action
-- ROI tracking from day 1
-- How a single plant scales to an orchard
+### Adding a New FMIS Connector
 
-## Installation
+1. Create a new directory under `src/connectors/fmis/`
+2. Implement the OAuth2 flow using `oauth-base.ts`
+3. Export organization/field listing methods
+4. Add UI integration in `farm-onboarding.ts`
 
-**Runtime:** Node 22+
+Example skeleton:
 
-```bash
-# npm
-npm install -g farm_clawed@latest
+```typescript
+// src/connectors/fmis/myplatform/index.ts
+import { OAuth2Config, exchangeCodeForTokens } from "../oauth-base.js";
 
-# pnpm
-pnpm add -g farm_clawed@latest
-
-# Run onboarding
-farm_clawed onboard --install-daemon
-```
-
-## From Source (Development)
-
-```bash
-git clone https://github.com/rahulraonatarajan/farm_clawed.git
-cd farm_clawed
-
-pnpm install
-pnpm ui:build
-pnpm build
-
-pnpm farm_clawed onboard --install-daemon
-```
-
-## Configuration
-
-Minimal `~/.farm_clawed/farm_clawed.json`:
-
-```json5
-{
-  farm: {
-    permacultureDepth: 1,  // 0-3
-    automationLevel: 1,    // 0-4
-  },
-  agent: {
-    model: "ollama/llama3.2",  // local LLM
-  },
+export class MyPlatformConnector {
+  async listFarms(): Promise<Farm[]> { /* ... */ }
+  async listFields(farmId: string): Promise<Field[]> { /* ... */ }
+  async fullSync(farmId: string): Promise<SyncResult> { /* ... */ }
 }
 ```
 
 ### Environment Variables
 
 ```bash
-# Optional: AI provider (works without, uses Ollama by default)
-AI_PROVIDER=local  # or openai, anthropic, none
+# FMIS Integrations (OAuth2 - get from developer portals)
+DEERE_CLIENT_ID=your-deere-client-id
+DEERE_CLIENT_SECRET=your-deere-client-secret
+FIELDVIEW_CLIENT_ID=your-fieldview-client-id
+FIELDVIEW_CLIENT_SECRET=your-fieldview-client-secret
 
-# Optional: Cloud AI (if not using Ollama)
+# Actuation (IFTTT Webhooks)
+IFTTT_WEBHOOK_KEY=your-ifttt-key
+
+# AI Provider (optional - defaults to Ollama)
+AI_PROVIDER=local  # or openai, anthropic
 AI_API_KEY=sk-...
+```
 
-# Optional: IFTTT for actuator control
+### No Secrets Policy
+
+farm_clawed enforces a strict no-secrets policy:
+
+- All credentials stored in `.env` (never in repo)
+- GitHub Actions run `gitleaks` on every PR
+- Logs automatically redact tokens and keys
+- Runtime validation warns about missing config
+
+---
+
+## Integration Guides
+
+### John Deere Setup
+
+1. Register at [developer.deere.com](https://developer.deere.com)
+2. Create an application with OAuth2
+3. Enable the Field Operations APIs you need
+4. Add your credentials to `.env`:
+
+```bash
+DEERE_CLIENT_ID=your-client-id
+DEERE_CLIENT_SECRET=your-client-secret
+DEERE_REDIRECT_URI=http://localhost:18789/oauth/deere/callback
+```
+
+See [docs/connectors/deere.md](docs/connectors/deere.md) for details.
+
+### Climate FieldView Setup
+
+1. Register at [developer.climate.com](https://developer.climate.com)
+2. Create an application with OAuth2
+3. Request the `fields:read` scope
+4. Add your credentials to `.env`:
+
+```bash
+FIELDVIEW_CLIENT_ID=your-client-id
+FIELDVIEW_CLIENT_SECRET=your-client-secret
+FIELDVIEW_REDIRECT_URI=http://localhost:18789/oauth/fieldview/callback
+```
+
+See [docs/connectors/fieldview.md](docs/connectors/fieldview.md) for details.
+
+### Other FMIS (CSV/GeoJSON)
+
+Export your field data from any system and import it:
+
+```bash
+# Import field boundaries
+farm_clawed farm import --geojson fields.geojson
+
+# Import sensor readings
+farm_clawed farm import --csv readings.csv --type sensors
+```
+
+See [docs/connectors/csv-import.md](docs/connectors/csv-import.md) for templates.
+
+### IFTTT Webhooks
+
+Connect any smart device through IFTTT:
+
+1. Go to [ifttt.com/maker_webhooks](https://ifttt.com/maker_webhooks)
+2. Get your webhook key from Documentation
+3. Create applets for your devices (e.g., `farm_clawed_water_2min`)
+4. Add to `.env`:
+
+```bash
 IFTTT_WEBHOOK_KEY=your-key
 ```
 
-## Farm Context Pack
+---
 
-farm_clawed uses a simple template system to understand your farm:
+## Safety System (Jidoka)
 
-### Core Templates (Required)
+farm_clawed uses Toyota-style "stop the line" safety:
 
-| File | Purpose |
-|------|---------|
-| `farm_profile.yaml` | Location, climate, constraints |
-| `farm_map.geojson` | Areas/fields/zones as polygons |
-| `water_assets.csv` | Water sources, valves, sensors |
-| `roi_inputs.yaml` | Cost tracking configuration |
-| `sensor_readings.csv` | Manual or imported sensor data |
-| `season_calendar.yaml` | Planting windows, frost dates |
+| Trigger | What Happens |
+|---------|--------------|
+| Leak detected | Immediately closes all valves, alerts you |
+| Overwatering | Stops irrigation, waits for drainage |
+| EC spike + dry soil | Flags possible salt buildup |
+| Frost warning | Sends alert, suggests protection actions |
 
-### Permaculture Extensions (Depth 2+)
-
-| File | Purpose |
-|------|---------|
-| `zones_0_5.geojson` | Permaculture zone boundaries |
-| `sectors.yaml` | Sun, wind, water flow analysis |
-| `guilds.yaml` | Plant guild definitions |
-| `succession_plan.yaml` | Multi-year succession stages |
-| `water_budget.yaml` | Drought stages and priorities |
-
-See [docs/FARM_CONTEXT_PACK.md](docs/FARM_CONTEXT_PACK.md) for complete specifications.
-
-## CLI Commands
+Every action is logged with a tamper-evident hash chain. View the audit log anytime:
 
 ```bash
-# Farm management
-farm_clawed farm init           # Initialize farm context
-farm_clawed farm status         # Show current status
-farm_clawed farm schedule run   # Trigger AI analysis
-
-# Approvals and safety
-farm_clawed farm approve <id>   # Approve pending action
-farm_clawed farm audit          # View audit log
-
-# Export and reporting
-farm_clawed farm export         # Export data/reports
-farm_clawed farm roi            # Show ROI dashboard
+farm_clawed farm audit --last 50
 ```
 
-## Safety/Jidoka System
+---
 
-farm_clawed implements Toyota-style autonomation for physical automation:
+## Contributing
 
-### Stop-the-Line Triggers
+We welcome contributions from both farmers and engineers!
 
-- **Leak Detection** — Flow without valve open command
-- **Overwatering** — Moisture > threshold for too long
-- **EC Spike** — High EC combined with dry soil
-- **Frost Risk** — Soil temperature dropping rapidly
+### For Farmers
 
-### Audit Chain
+- **Test and report issues** — Your real-world feedback is invaluable
+- **Share templates** — Farm profiles, planting calendars, guild definitions
+- **Request features** — What would make your work easier?
+- **Write guides** — Help others set up for your crop type or region
 
-Every action is logged with SHA256 hash chain for tamper-evident history.
+### For Engineers
 
-### Approval Levels
+- **Add connectors** — New FMIS platforms, sensor brands, actuators
+- **Improve AI skills** — Domain-specific knowledge for crops/regions
+- **Enhance UI** — Charts, visualizations, mobile responsiveness
+- **Fix bugs** — Check issues labeled `good first issue`
 
-- **Level 0-2:** All actuator actions require human approval
-- **Level 3:** Automatic within guardrails, alerts on anomalies
-- **Level 4:** Full automation with strict Jidoka and incident runbooks
+### Development Setup
 
-## Hardware Integration (Optional)
+```bash
+git clone https://github.com/rahulraonatarajan/farm_clawed.git
+cd farm_clawed
 
-### Supported Devices
+pnpm install
+pnpm build
+pnpm test
 
-- **Tuya/SmartLife** — Soil sensors, valve controllers
-- **IFTTT Webhooks** — Scene-based actuation
-- **Home Assistant** — Bridge stub (coming soon)
-
-### Scene Convention
-
-```
-FARM_LEMON_WATER_1MIN
-FARM_LEMON_WATER_2MIN
-FARM_LEMON_WATER_5MIN
-FARM_LEMON_WATER_10MIN
-FARM_ALL_OFF
+# Run development server
+pnpm dev
 ```
 
-See [docs/IFTTT_SMARTLIFE_SETUP.md](docs/IFTTT_SMARTLIFE_SETUP.md) for setup guide.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-## ROI Tracking
-
-farm_clawed tracks return on investment across:
-
-- **Water Savings** — Gallons saved vs baseline
-- **Time Savings** — Hours freed per week
-- **Avoided Loss** — Prevented plant death/damage
-- **Input Savings** — Reduced fertilizer waste
-- **Payback Period** — Months to recover equipment cost
-
-ROI adapts to your chosen permaculture depth and automation level.
-
-## Tool Ladder
-
-| Tier | Tools | Value |
-|------|-------|-------|
-| 0 | AI console (free) | Time saved, better decisions |
-| 1 | Paid AI models | Higher quality recommendations |
-| 2 | Workflows | Automated scheduling |
-| 3 | Custom skills | Domain-specific knowledge |
-| 4 | Local LLM | Privacy + cost savings |
-| 5 | Full hardware | End-to-end automation |
-
-## Architecture
-
-```
-farm_clawed/
-├── src/farm/              # Farm-specific logic
-│   ├── schemas/           # Zod validation schemas
-│   ├── safety/            # Jidoka implementation
-│   ├── ai/                # Provider abstraction
-│   └── roi/               # ROI calculator
-├── skills/
-│   ├── farm-standard/     # Standard farm skills
-│   └── farm-permaculture/ # Permaculture skills
-├── extensions/
-│   └── ifttt-smartlife/   # Optional actuator connector
-└── ui/src/ui/
-    ├── views/
-    │   ├── farm-dashboard.ts     # ChatGPT-style AI interface
-    │   ├── farm-map-dashboard.ts # Full-screen map with overlays
-    │   ├── farm-equipment.ts     # Equipment management
-    │   └── farm-automations.ts   # Automation history
-    └── components/
-        └── chat-bubble.ts        # Floating AI assistant
-```
-
-See [docs/ARCHITECTURE_REVIEW.md](docs/ARCHITECTURE_REVIEW.md) for details.
+---
 
 ## Documentation
 
-- [Architecture Review](docs/ARCHITECTURE_REVIEW.md)
-- [Farm Context Pack](docs/FARM_CONTEXT_PACK.md)
-- [IFTTT/SmartLife Setup](docs/IFTTT_SMARTLIFE_SETUP.md)
-- [Template Examples](docs/TEMPLATES/)
+| Guide | Description |
+|-------|-------------|
+| [Architecture Review](docs/ARCHITECTURE_REVIEW.md) | System design and module structure |
+| [Farm Context Pack](docs/FARM_CONTEXT_PACK.md) | Template file specifications |
+| [John Deere Connector](docs/connectors/deere.md) | Deere OAuth2 setup |
+| [FieldView Connector](docs/connectors/fieldview.md) | FieldView OAuth2 setup |
+| [CSV/GeoJSON Import](docs/connectors/csv-import.md) | Manual data import |
+| [IFTTT Setup](docs/IFTTT_SMARTLIFE_SETUP.md) | Webhook automation |
+| [Testing Guide](docs/testing.md) | Running tests locally |
 
-## Flagship Experiment: Santa Teresa Lemon Tree
+---
 
-Our live demo showcases farm_clawed managing a containerized Meyer Lemon:
+## Flagship Demo: Lemon Tree Experiment
 
-**Hardware:**
-- SmartLife/Tuya Valve Controller 2 + Gateway
-- Tuya Solar Soil Sensor (Moisture + Temp + EC)
+Our live demo manages a containerized Meyer Lemon using:
 
-**Day 1 Readings:**
-- Moisture: 17%
-- Soil Temp: 54.5°F
-- EC: 0.001 mS/cm
-- Battery: 57%
+- SmartLife soil sensor (moisture, temp, EC)
+- IFTTT webhook for irrigation valve
+- AI recommendations based on citrus growing guides
 
-**Route:** `/farm` (Dashboard) or `/farm/map` (Map View)
+This single-plant setup demonstrates how farm_clawed scales from containers to commercial operations.
 
-This experiment demonstrates how the same system scales from a single container plant to an entire orchard or farm.
+```bash
+# Try the demo
+farm_clawed gateway --port 18789
+open http://localhost:18789
+```
 
-## Contributors
+---
 
-farm_clawed is built on the shoulders of giants:
+## Credits
 
-- **[Peter Steinberger](https://github.com/steipete)** — Creator of [OpenClaw](https://github.com/openclaw/openclaw), the powerful AI platform that farm_clawed is built upon
-- **[Rahul Rao Natarajan](https://github.com/rahulraonatarajan)** — farm_clawed fork maintainer, autonomous farming features
+farm_clawed is built on [OpenClaw](https://github.com/openclaw/openclaw), the powerful AI platform by [Peter Steinberger](https://github.com/steipete).
 
-We welcome contributions from farmers, developers, and permaculture enthusiasts! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines. Thank you.
+**Maintainer:** [Rahul Rao Natarajan](https://github.com/rahulraonatarajan)
+
+---
 
 ## License
 
-MIT License — see [LICENSE](LICENSE) for details.
+MIT License — see [LICENSE](LICENSE).
 
-This project is open source to ensure farmers everywhere can benefit from AI-assisted automation. Commercial use, modification, and distribution are all permitted under the MIT license.
+Open source so farmers everywhere can benefit from AI-assisted farming. Commercial use, modification, and distribution permitted.
 
 ---
 
 <p align="center">
-  <strong>farm_clawed</strong> — Growing smarter, together. 🌱
+  <strong>farm_clawed</strong> — Your fields. Your data. AI-powered insights.
 </p>

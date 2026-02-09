@@ -469,7 +469,19 @@ export class FarmChatBubble extends LitElement {
   ollamaStatus: "online" | "offline" | "loading" = "loading";
 
   @property({ type: String })
+  openaiStatus: "online" | "offline" | "loading" = "loading";
+
+  @property({ type: String })
   ollamaModel = "llama3.2:latest";
+
+  @property({ type: String })
+  openaiModel = "gpt-4o";
+
+  @property({ type: String })
+  openaiApiKey = "";
+
+  @property({ type: String })
+  aiProvider: "ollama" | "openai" | "auto" = "auto";
 
   @property({ type: Array })
   externalMessages: BubbleChatMessage[] = [];
@@ -492,6 +504,36 @@ export class FarmChatBubble extends LitElement {
   override connectedCallback() {
     super.connectedCallback();
     this.checkOllamaStatus();
+    this.checkOpenAIStatus();
+  }
+
+  private async checkOpenAIStatus() {
+    if (this.openaiApiKey) {
+      try {
+        const response = await fetch("https://api.openai.com/v1/models", {
+          headers: { Authorization: `Bearer ${this.openaiApiKey}` },
+        });
+        this.openaiStatus = response.ok ? "online" : "offline";
+      } catch {
+        this.openaiStatus = "offline";
+      }
+    } else {
+      this.openaiStatus = "offline";
+    }
+  }
+
+  private getActiveProvider(): "ollama" | "openai" {
+    if (this.aiProvider === "auto") {
+      if (this.openaiStatus === "online") return "openai";
+      if (this.ollamaStatus === "online") return "ollama";
+      return "ollama";
+    }
+    return this.aiProvider;
+  }
+
+  private getProviderStatus(): "online" | "offline" | "loading" {
+    const provider = this.getActiveProvider();
+    return provider === "openai" ? this.openaiStatus : this.ollamaStatus;
   }
 
   override updated(changedProperties: Map<string, unknown>) {
@@ -592,8 +634,8 @@ export class FarmChatBubble extends LitElement {
       composed: true 
     }));
 
-    // Call Ollama
-    await this.callOllama(content);
+    // Call AI
+    await this.callAI(content);
   }
 
   private handleCommand(command: string) {
@@ -660,12 +702,16 @@ export class FarmChatBubble extends LitElement {
     }, 300);
   }
 
-  private async callOllama(userMessage: string) {
-    if (this.ollamaStatus === "offline") {
+  private async callAI(userMessage: string) {
+    const provider = this.getActiveProvider();
+    const status = this.getProviderStatus();
+
+    if (status === "offline") {
+      const providerName = provider === "openai" ? "OpenAI" : "Ollama";
       this.messages = [...this.messages, {
         id: this.generateId(),
         role: "assistant",
-        content: "Ollama is offline. Try /status, /map, /equipment, or /approvals for quick navigation.",
+        content: `${providerName} is offline. Try /status, /map, /equipment, or /approvals for quick navigation.`,
         timestamp: new Date().toISOString(),
       }];
       this.scrollToBottom();
@@ -703,24 +749,43 @@ Be concise and helpful. Keep responses brief for this chat bubble interface.`;
     this.scrollToBottom();
 
     try {
-      const response = await fetch("http://localhost:11434/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: this.ollamaModel,
-          messages: [
-            { role: "system", content: farmContext },
-            ...this.messages.slice(0, -1).filter(m => m.role !== "system").slice(-6).map(m => ({
-              role: m.role,
-              content: m.content,
-            })),
-            { role: "user", content: userMessage },
-          ],
-          stream: true,
-        }),
-      });
+      const chatMessages = [
+        { role: "system", content: farmContext },
+        ...this.messages.slice(0, -1).filter(m => m.role !== "system").slice(-6).map(m => ({
+          role: m.role,
+          content: m.content,
+        })),
+        { role: "user", content: userMessage },
+      ];
 
-      if (!response.ok) throw new Error(`Ollama error: ${response.status}`);
+      let response: Response;
+
+      if (provider === "openai") {
+        response = await fetch("https://api.openai.com/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${this.openaiApiKey}`,
+          },
+          body: JSON.stringify({
+            model: this.openaiModel,
+            messages: chatMessages,
+            stream: true,
+          }),
+        });
+      } else {
+        response = await fetch("http://localhost:11434/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            model: this.ollamaModel,
+            messages: chatMessages,
+            stream: true,
+          }),
+        });
+      }
+
+      if (!response.ok) throw new Error(`${provider} error: ${response.status}`);
 
       const reader = response.body?.getReader();
       if (!reader) throw new Error("No response body");
@@ -737,9 +802,25 @@ Be concise and helpful. Keep responses brief for this chat bubble interface.`;
 
         for (const line of lines) {
           try {
-            const json = JSON.parse(line);
-            if (json.message?.content) {
-              fullContent += json.message.content;
+            // Handle OpenAI SSE format (data: {json})
+            let jsonStr = line;
+            if (line.startsWith("data: ")) {
+              jsonStr = line.slice(6);
+              if (jsonStr === "[DONE]") continue;
+            }
+
+            const json = JSON.parse(jsonStr);
+            
+            // Extract content based on provider format
+            let contentDelta = "";
+            if (provider === "openai") {
+              contentDelta = json.choices?.[0]?.delta?.content || "";
+            } else {
+              contentDelta = json.message?.content || "";
+            }
+
+            if (contentDelta) {
+              fullContent += contentDelta;
               this.messages = this.messages.map(m => 
                 m.id === assistantMsgId ? { ...m, content: fullContent } : m
               );

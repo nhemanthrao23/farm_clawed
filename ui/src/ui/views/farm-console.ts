@@ -13,91 +13,94 @@ export class FarmConsoleView extends LitElement {
     :host {
       display: block;
       padding: 1rem;
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family:
+        system-ui,
+        -apple-system,
+        sans-serif;
     }
-
+    
     .header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.5rem;
     }
-
+    
     h1 {
       margin: 0;
       font-size: 1.5rem;
       color: var(--color-text-primary, #1a1a1a);
     }
-
+    
     .status-badge {
       padding: 0.25rem 0.75rem;
       border-radius: 9999px;
       font-size: 0.75rem;
       font-weight: 500;
     }
-
+    
     .status-badge.ok {
       background: #dcfce7;
       color: #166534;
     }
-
+    
     .status-badge.warning {
       background: #fef3c7;
       color: #92400e;
     }
-
+    
     .grid {
       display: grid;
       grid-template-columns: 2fr 1fr;
       gap: 1.5rem;
     }
-
+    
     @media (max-width: 768px) {
       .grid {
         grid-template-columns: 1fr;
       }
     }
-
+    
     .card {
       background: var(--color-bg-card, #fff);
       border: 1px solid var(--color-border, #e5e7eb);
       border-radius: 0.5rem;
       padding: 1rem;
     }
-
+    
     .card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1rem;
     }
-
+    
     .card-title {
       font-weight: 600;
       color: var(--color-text-primary, #1a1a1a);
     }
-
+    
     .recommendation {
       padding: 0.75rem;
       border-radius: 0.375rem;
       margin-bottom: 0.5rem;
     }
-
+    
     .recommendation.high {
       background: #fef2f2;
       border-left: 3px solid #ef4444;
     }
-
+    
     .recommendation.medium {
       background: #fffbeb;
       border-left: 3px solid #f59e0b;
     }
-
+    
     .recommendation.low {
       background: #f0fdf4;
       border-left: 3px solid #22c55e;
     }
-
+    
     .recommendation-priority {
       font-size: 0.625rem;
       font-weight: 600;
@@ -105,56 +108,56 @@ export class FarmConsoleView extends LitElement {
       letter-spacing: 0.05em;
       margin-bottom: 0.25rem;
     }
-
+    
     .recommendation-action {
       font-weight: 500;
       margin-bottom: 0.25rem;
     }
-
+    
     .recommendation-reason {
       font-size: 0.875rem;
       color: var(--color-text-secondary, #6b7280);
     }
-
+    
     .reading {
       display: flex;
       justify-content: space-between;
       padding: 0.5rem 0;
       border-bottom: 1px solid var(--color-border, #e5e7eb);
     }
-
+    
     .reading:last-child {
       border-bottom: none;
     }
-
+    
     .reading-label {
       color: var(--color-text-secondary, #6b7280);
     }
-
+    
     .reading-value {
       font-weight: 600;
     }
-
+    
     .reading-value.warning {
       color: #f59e0b;
     }
-
+    
     .reading-value.critical {
       color: #ef4444;
     }
-
+    
     .sources {
       margin-top: 1rem;
       padding-top: 1rem;
       border-top: 1px solid var(--color-border, #e5e7eb);
     }
-
+    
     .sources-title {
       font-size: 0.75rem;
       color: var(--color-text-secondary, #6b7280);
       margin-bottom: 0.5rem;
     }
-
+    
     .source-tag {
       display: inline-block;
       padding: 0.125rem 0.5rem;
@@ -200,7 +203,12 @@ export class FarmConsoleView extends LitElement {
   ];
 
   @state()
-  private sources = ["sensor_readings.csv", "farm_profile.yaml", "season_calendar.yaml", "irrigation-policy skill"];
+  private sources = [
+    "sensor_readings.csv",
+    "farm_profile.yaml",
+    "season_calendar.yaml",
+    "irrigation-policy skill",
+  ];
 
   override render() {
     return html`
@@ -272,4 +280,3 @@ declare global {
     "farm-console-view": FarmConsoleView;
   }
 }
-
